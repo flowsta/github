@@ -14,10 +14,22 @@
 <li><a href="#orgheadline8">Añadir</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">Renombrar archivos o directorios</a></li>
-<li><a href="#orgheadline11">Actualizar repositorio</a></li>
-<li><a href="#orgheadline12">Pull request</a></li>
-<li><a href="#orgheadline13">Bibliografía</a></li>
+<li><a href="#orgheadline15">Renombrar archivos o directorios</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgheadline10">Renombrar un archivo</a></li>
+<li><a href="#orgheadline11">Renombrar un directorio</a></li>
+<li><a href="#orgheadline12">Case sensitive</a></li>
+<li><a href="#orgheadline13">Borrar del repositorio</a></li>
+<li><a href="#orgheadline14">Borrar un directorio</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline16">Actualizar repositorio</a></li>
+<li><a href="#orgheadline17">Pull request</a></li>
+<li><a href="#orgheadline18">Bibliografía</a></li>
 </ul>
 </div>
 </div>
@@ -78,12 +90,13 @@ Si en este caso podríamos saber el *status* de git, el mensaje nos avisaría di
 
 Si queremos realizar una página web, podemos clonar el proyecto Boilerplate de Paul Irish:
 
-    $ git clone git://github.com/paulirish/html5-boilerplate.git
+    git clone git://github.com/paulirish/html5-boilerplate.git
 
 # Crear un repositorio<a id="orgheadline5"></a>
 
--   Creas un repositorio con un nombre en Github.
--   Github te sugiere varias formas de copiarlo en local, en el propio ordenador. Os recomiendo seguir estos pasos:
+Primero creas un repositorio con un nombre en Github.
+
+Github te sugiere varias formas de copiarlo en local, en el propio ordenador. Os recomiendo seguir estos pasos:
 
     echo "# Proyecto de ..." >> README.md
     git init
@@ -94,7 +107,7 @@ Si queremos realizar una página web, podemos clonar el proyecto Boilerplate de 
 
 # Estado del repositorio<a id="orgheadline6"></a>
 
-Podemos ver el estado del repositorio con la opción `clone`
+Podemos ver el estado del repositorio con la opción `log`
 
     git log
 
@@ -119,15 +132,15 @@ Si queremos ver los cambios en esta versión, debemos utilizar la opción `diff`
     git commit -m "comentario sobre cambios"
     git push -u origin nueva-rama
 
-# Renombrar archivos o directorios<a id="orgheadline10"></a>
+# Renombrar archivos o directorios<a id="orgheadline15"></a>
 
-Renombrar un archivo:
+### Renombrar un archivo<a id="orgheadline10"></a>
 
     git mv archivo1 archivo2
     git add archivo2
     git push -u origin master
 
-Renombrar un directorio:
+### Renombrar un directorio<a id="orgheadline11"></a>
 
     git mv directorio1 directorio2
     git add directorio2
@@ -135,29 +148,37 @@ Renombrar un directorio:
 
 Ver los cambios que vamos a realizar con la opción `-n`, el atajo de `--dry-run`
 
-    git mv -n foldername folderName
+    git mv -n nombre_directorio_antiguo nombre_directorio_nuevo
 
-Renombrar en sistemas que no distinguen entre mayúsculas y minúsculas, puede dar un error cuando modifiquemos el nombre por caracteres en mayúsculas, por lo qu etendríamos que hacer:
+### Case sensitive<a id="orgheadline12"></a>
+
+Renombrar en sistemas que no distinguen entre mayúsculas y minúsculas, puede dar un error cuando modifiquemos el nombre por caracteres en mayúsculas, por lo que tendríamos que hacer:
 
     git mv directorio1 tempname && git mv tempname Directorio2
+
+### Borrar del repositorio<a id="orgheadline13"></a>
 
 Borrar un archivo del repositorio sin borrarlo del sistema de directorios local:
 
     git rm --cached archivo.org
 
+### Borrar un directorio<a id="orgheadline14"></a>
+
 Para borrar un directorio:
 
     git rm --cached -r directorio
 
-# Actualizar repositorio<a id="orgheadline11"></a>
+# Actualizar repositorio<a id="orgheadline16"></a>
 
 Si queremos actualizar el repositorio con los cambios que se hayan producido en él, lo haremos con la opción `pull`:
 
     git pull
 
-# Pull request<a id="orgheadline12"></a>
+# Pull request<a id="orgheadline17"></a>
 
-Para hacer un pull request, primero tenemos que crear una copia del proyecto:
+Haremos un *pull request* cuando queramos contribuir con nuestros cambios -mejoras, corrección de errores, actualizaciones- a un repositorio que ya existe.
+
+Por eso, lo primero que tenemos que hacer es crear una copia del proyecto:
 
     $ git clone ruta-proyecto.git
 
@@ -167,11 +188,11 @@ Luego creamos una rama donde hacer las modificaciones:
 
 Al crearla nos movemos a esa rama. Podemos comprobarlo si tenemos el asterisco en la rama deseada:
 
-    $ git branch
+    git branch
 
 Si no estamos ahí, vamos con:
 
-    $ git checkout nueva-rama
+    git checkout nueva-rama
 
 Luego hacemos las modificaciones que sean a nuestros archivos, las añadimos, las comiteamos y las subimos a la rama creada:
 
@@ -181,7 +202,9 @@ Luego hacemos las modificaciones que sean a nuestros archivos, las añadimos, la
 
 Comprobamos el estado de git con `git status`
 
-Si todo está bien, vamos a github y en la página del repo pondrá que hay una rama sobre la que hacer un pull-request: pinchamos y seguimos los pasos.
+    git status
+
+Si todo está bien, vamos a nuestra copia del proyecto en Github y en la página del repo pondrá que hay una rama sobre la que hacer un *pull-request*, pinchamos y seguimos los pasos.
 
 Si no hay discusión, si está todo bien, el administrador lo aprobará y entonces podremos borrar la rama. Nos movemos a master y desde ahí borramos en local y en el servidor:
 
@@ -189,7 +212,8 @@ Si no hay discusión, si está todo bien, el administrador lo aprobará y entonc
     git branch -d nueva-rama
     git push origin --delete nueva-rama
 
-# Bibliografía<a id="orgheadline13"></a>
+# Bibliografía<a id="orgheadline18"></a>
 
 -   <http://alistapart.com/article/get-started-with-git>
 -   <http://progit.org/book/ch1-4.html>
+-   [Qué es y cómo publicar nuestros proyectos en Github](http://ferblape.github.io/github.com-medialab-desigualdad)
