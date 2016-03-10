@@ -373,6 +373,25 @@ Por último subimos a GitHub todo lo que tenemos en la nueva rama:
 
 En unos minutos, GitHub lo habrá publicado en una URL del tipo <http://nombre-de-usuarix.github.io/mi-proyecto>
 
+Si tu repositorio es solo una web, puedes optar por utilizar solo la rama `gh-pages` en vez de mantener las dos ramas. Para ello tienes que elegir en GitHub qué rama utilizas.
+
+Si mantienes las dos, actualizar la web se puede convertir en algo tedioso si lo haces habitualmente.
+
+Para facilitar la tarea, [brettterpstra.com recomienda una solución](http://brettterpstra.com/2012/09/26/github-tip-easily-sync-your-master-to-github-pages/), puedes editar `.git/config` y añadir estas líneas a `[remote "origin"]`:
+
+    push = +refs/heads/master:refs/heads/gh-pages
+    push = +refs/heads/master:refs/heads/master
+
+Quedando así:
+
+    [remote "origin"]
+    	fetch = +refs/heads/*:refs/remotes/origin/*
+    	url = git@github.com:user/repo.git
+    	push = +refs/heads/master:refs/heads/gh-pages
+    	push = +refs/heads/master:refs/heads/master
+
+De esta manera, cuando hagas git push lo harás en los dos repos.
+
 # Problemas<a id="orgheadline32"></a>
 
 ## 403 fatal: HTTP request failed<a id="orgheadline30"></a>
