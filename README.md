@@ -42,7 +42,21 @@
 </li>
 <li><a href="#orgheadline23">Actualizar repositorio</a></li>
 <li><a href="#orgheadline24">Pull request</a></li>
-<li><a href="#orgheadline25">Bibliografía</a></li>
+<li><a href="#orgheadline25">Borrar rama</a></li>
+<li><a href="#orgheadline26">Mantener un repositorio forkeado actualizado</a></li>
+<li><a href="#orgheadline29">Publicación web</a>
+<ul>
+<li><a href="#orgheadline27">Nombre del repositorio</a></li>
+<li><a href="#orgheadline28">Rama gh-pages</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline32">Problemas</a>
+<ul>
+<li><a href="#orgheadline30">403 fatal: HTTP request failed</a></li>
+<li><a href="#orgheadline31">git: error: src refspec master does not match any</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline33">Bibliografía</a></li>
 </ul>
 </div>
 </div>
@@ -65,28 +79,45 @@ En GNU/Linux, tan solo hay que instalar `git-core`:
 
     apt-get install git-core
 
-En Mac se puede instalar el [instalador gráfico de git](http://code.google.com/p/git-osx-installer) y en Windows, [msysgit](http://code.google.com/p/msysgit/).
+En Mac se puede instalar el [instalador gráfico de git](https://sourceforge.net/projects/git-osx-installer/) y en Windows, [git for Windows](https://git-for-windows.github.io/).
 
-Para usar git desde la terminal en Mac hay que activar las funciones de Xcode.
+> Para usar git desde la terminal en Mac hay que activar las funciones de Xcode.
+
+Si queremos disfrutar de una terminal potente, podríamos usar [Cygwin](http://cygwin.com) en Windows o la Terminal en  Mac.
 
 Comprobamos que se ha instalado git con la opción `--version`
 
     git --version
 
+También tenemos los instaladores oficiales de [git](http://www.git-scm.com):
+
+-   Mac, <http://www.git-scm.com/download/mac>
+-   Windows, <http://www.git-scm.com/download/win>
+
 # GitHub<a id="orgheadline2"></a>
 
--   Crea una [cuenta en GitHub](http://www.github.com)
--   Windows: <http://windows.github.com>
--   Mac OS X: <http://mac.github.com>
+Crea una [cuenta en GitHub](http://www.github.com)
+
+Si no te atreviste con el paso anterior, puedes usar estos programas de escritorio para Windows y Mac:
+
+-   Windows: <http://windows.github.com> y [primeros pasos](https://help.github.com/articles/set-up-git/#platform-windows)
+-   Mac OS X: <http://mac.github.com> y [primeros pasos](https://help.github.com/articles/set-up-git/#platform-mac)
 
 # Llave SSH<a id="orgheadline3"></a>
 
+> Si no sabes qué es SSH, sáltate esto
+
 Puedes conectarte por ssh y activar la llave ssh para conectarte de forma autentificada automáticamente. Si esto que lees no te parece raro y crees que puedes hacerlo, no dejes de leer este manual:
+
 <https://help.github.com/articles/generating-ssh-keys/>
 
 # Configuración<a id="orgheadline4"></a>
 
-La primera vez que usas Git te pedirá tu nombre de correo y de usuario. Lo podemos agregar con el comando `config`.
+La primera vez que usas Git te pedirá tu nombre de usuarix y dirección de correo. Lo podemos agregar con el comando `config`.
+
+Añado el nombre de la cuenta, en este caso el nombre de usuarix en GitHub:
+
+    git config --global user.name "Nombre_de_Usuarix"
 
 Añado la dirección de correo electrónico:
 
@@ -116,13 +147,29 @@ También podemos crear un directorio con `mkdir` y luego inicializar ese directo
 
 Para que el repositorio o proyecto también esté en GitHub, vamos a Github y creamos un proyecto nuevo que llamamos con el nombre del directorio que hemos creado o del directorio que ya existía.
 
-No marques la opción *Initialize with README* y tampoco le asignes licencia, vamos a crear un repositorio vacío para que nos sea más fácil realizar el primer `push`.
+> No marques la opción *Initialize with README* y tampoco le asignes licencia, vamos a crear un repositorio vacío para que nos sea más fácil realizar el primer `push`.
 
 Conectamos el directorio local donde nos encontramos con GitHub de la siguiente manera:
 
-    $ git remote add origin https://github.com/tu_nombre_usuarix/primera-newsapp.git
+    git remote add origin https://github.com/tu_nombre_usuarix/primera-newsapp.git
 
 Donde le decimos a `git` que añadimos un `.git` remoto en la URL de GitHub.
+
+Hemos de crear al menos un archivo README.md donde puedes poner la información del proyecto:
+
+    echo "# Otro proyecto ni más ni menos" >> README.md
+
+Añadimos el archivo a git:
+
+    git add README.md
+
+Lo comiteamos:
+
+    git commit -m "mi primer commit"
+
+Y lo subimos a GitHub:
+
+    git push -u origin master
 
 ## Opción GitHub<a id="orgheadline9"></a>
 
@@ -184,7 +231,7 @@ Si queremos ver los cambios en esta versión, debemos utilizar la opción `diff`
 
     git add ruta-nuevos-archivos
     git commit -m "comentario sobre cambios"
-    git push -u origin nueva-rama
+    git push -u origin rama
 
 # Renombrar archivos o directorios<a id="orgheadline22"></a>
 
@@ -234,11 +281,11 @@ Haremos un *pull request* cuando queramos contribuir con nuestros cambios -mejor
 
 Por eso, lo primero que tenemos que hacer es crear una copia del proyecto:
 
-    $ git clone ruta-proyecto.git
+    git clone ruta-proyecto.git
 
 Luego creamos una rama donde hacer las modificaciones:
 
-    $ git checkout -b nueva-rama
+    git checkout -b nueva-rama
 
 Al crearla nos movemos a esa rama. Podemos comprobarlo si tenemos el asterisco en la rama deseada:
 
@@ -266,8 +313,87 @@ Si no hay discusión, si está todo bien, el administrador lo aprobará y entonc
     git branch -d nueva-rama
     git push origin --delete nueva-rama
 
-# Bibliografía<a id="orgheadline25"></a>
+# Borrar rama<a id="orgheadline25"></a>
 
+En local:
+
+    git branch -d rama-local
+
+Si no se borra así, con `-D`
+
+    git branch -d rama-local
+
+En remoto::
+
+    git push origin --delete rama-remota
+
+o también:
+
+    git push origin :ramaremota
+
+# Mantener un repositorio forkeado actualizado<a id="orgheadline26"></a>
+
+Añades upstream como servidor remoto:
+
+    git remote add upstream git://github.com/ORIGINAL-DEV-USERNAME/REPO-YOU-FORKED-FROM.git
+
+Actualizas upstream
+
+    git fetch upstream
+
+Actualizas el fork del repositorio original con sus cambios:
+
+    git pull upstream master
+
+# Publicación web<a id="orgheadline29"></a>
+
+Si el contenido del proyecto es HTML, podemos utilizar a GitHub como servidor web de nuestro contenido web, a través de la funcionalidad [Pages](http://pages.github.com/).
+
+Se puede hacer de dos maneras:
+
+## Nombre del repositorio<a id="orgheadline27"></a>
+
+Si el nombre del repositorio sigue la estructura "nombre-de-usuarix.github.io", el proyecto que cuelgue de ahí se publicará automágicamente en <http://nombre-de-usuarix.github.io>
+
+## Rama gh-pages<a id="orgheadline28"></a>
+
+Cualquier repositorio que tenga la rama `gh-pages` será publicado, y se verá su contenido web.
+
+Por ejemplo, si tenemos un repositorio con nombre `mi-proyecto` que contiene una web y queremos publicarlo como página web, solo tenemos que crear una nueva rama `branch` de nuestro proyecto que llamaremos `gh-pages`:
+
+    git checkout -b gh-pages
+
+Luego ponemos ahí todo el contenido de la rama `master`:
+
+    git merge master
+
+Por último subimos a GitHub todo lo que tenemos en la nueva rama:
+
+    $ git push -u origin gh-pages
+
+En unos minutos, GitHub lo habrá publicado en una URL del tipo <http://nombre-de-usuarix.github.io/mi-proyecto>
+
+# Problemas<a id="orgheadline32"></a>
+
+## 403 fatal: HTTP request failed<a id="orgheadline30"></a>
+
+<http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed>
+
+    git remote set-url origin https://yourusername@github.com/user/repo.git
+
+## git: error: src refspec master does not match any<a id="orgheadline31"></a>
+
+<http://stackoverflow.com/questions/10568641/git-error-src-refspec-master-does-not-match-any>
+
+    git remote rm origin
+    git remote set-url origin git@....
+    git push -u origin master
+
+# Bibliografía<a id="orgheadline33"></a>
+
+Algunos recursos:
+
+-   [Git, distributed is the new centralized](https://git-scm.com/book/es)
 -   <http://alistapart.com/article/get-started-with-git>
 -   <http://progit.org/book/ch1-4.html>
 -   [Qué es y cómo publicar nuestros proyectos en Github](http://ferblape.github.io/github.com-medialab-desigualdad)
