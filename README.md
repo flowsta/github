@@ -1,5 +1,5 @@
 <div id="table-of-contents">
-<h2>Table of Contents</h2>
+<h2>Índice de contenidos</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">Instalación de git</a></li>
@@ -61,7 +61,7 @@
 </div>
 </div>
 
-Módulo de periodismo de datos de *github* donde aprenderemos cosas directamente relacionadas:
+Módulo de periodismo de datos de **github** donde aprenderemos cosas directamente relacionadas:
 
 -   git
 -   gestión de proyectos
