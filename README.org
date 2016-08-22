@@ -82,9 +82,100 @@ Si no te atreviste con el paso anterior, puedes usar estos programas de escritor
 Si no sabes qué es SSH, sáltate esto
 #+END_QUOTE
 
-Puedes conectarte por ssh y activar la llave ssh para conectarte de forma autentificada automáticamente. Si esto que lees no te parece raro y crees que puedes hacerlo, no dejes de leer este manual:
+Las claves SSH son una forma de identificar ordenadores de confianza sin comprometer contraseñas. Se peude generar unas claves SSH y añadir la clave pública de GitHub para que se produzca la conexión.
 
-https://help.github.com/articles/generating-ssh-keys/
+GitHub recomienda revisar regularmente la lista de claves SSH y revocar aquellas que no se usen, no se hayan usado o no se vayan a usar.
+
+Puedes conectarte por ssh y activar la llave ssh para conectarte de forma autentificada automáticamente. Vayamos paso a paso.
+
+** Comprobación de claves
+
+Primero comprobamos que contamos con clave ssh en el equipo:
+
+#+BEGIN_SRC sh
+ls -la ~/.ssh
+#+END_SRC
+
+Si aparece un listado de claves, podremos saltarnos el siguiente paso. Si no, debemos generar unas claves.
+
+** Generar claves ssh
+
+Necesitas generar una clave ssh el equipo local desde el que te conectas:
+
+#+BEGIN_SRC sh
+ssh-keygen -t rsa -b 4096 -C "correo-electronico@dominio.com"
+#+END_SRC
+
+Lo cual crea una nueva clave ssh y utiliza el correo electrónico como etiqueta.
+
+Si todo va bien, mostrará el mensaje de generación de la clave, pedirá dónde almacenarla y se puede añadir una contraseña:
+
+#+BEGIN_EXAMPLE
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/usuarix/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/usuarix/.ssh/id_rsa.
+Your public key has been saved in /home/usuarix/.ssh/id_rsa.pub.
+The key fingerprint is:
+(...)
+#+END_EXAMPLE
+
+=(...)= es donde aparece la clave.
+
+Ahora que ya tenemos la clave, la pegamos en GitHub en las preferencias, en el apartado "SSH and GPG keys".
+
+*** Copia de clave con método =pbcopy=
+Para seleccionar la clave, podemos emplear el método MacOSX =pbcopy=, que podemos hackear en GNU/Linux con un /alias/ a partir de =xsel=:
+
+#+BEGIN_SRC sh
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+#+END_SRC
+
+De esta forma ya podemos utilizar =pbcopy=:
+
+#+BEGIN_SRC sh
+pbcopy < ~/.ssh/id_rsa.pub
+#+END_SRC
+
+Y pegamos en GitHub. A partir de ahí ya podremos conectarnos con GitHub de forma segura.
+
+*** Copia de clave con =more= y copiar y pegar
+
+Podemos hacerlo en dos pasos, mostrando la clave y copiándola con el ratón:
+
+#+BEGIN_SRC sh
+more ~/.ssh/id_rsa.pub
+#+END_SRC
+
+** Configuración local y comprobación
+
+Ya está casi todo hecho. Ahora falta decirle a git que nos conectamos a GitHub de forma segura. Para ello, podemos comprobar que lo podemos hacer, y en el mismo paso aprobar la conexión:
+
+#+BEGIN_SRC sh
+ssh -T git@github.com
+#+END_SRC
+
+Nos pedirá la contraseña que hayamos puesto a la clave si lo hemos hecho, lo introducimos y listo. Si no, nos saldrá directamente el mensaje:
+
+#+BEGIN_EXAMPLE
+The authenticity of host 'github.com (192.30.252.1)' can't be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)?
+#+END_EXAMPLE
+
+Nótese que 192.30.252.1 es una de las direcciones IP de GitHub, pero podría salir otra. Lo más importante es fijarse en el fingerprint.
+
+Le decimos que sí y entonces GitHub nos responde:
+
+#+BEGIN_EXAMPLE
+Hi usuarix! You've successfully authenticated, but GitHub does not provide shell access.
+#+END_EXAMPLE
+
+Donde =usuarix= es nuestrx usuarix en GitHub. Ya está hecho.
+
+Si nos apareciese el mensaje =access denied=, recomiendo seguir los pasos anteriores o [[https://help.github.com/articles/error-permission-denied-publickey][este artículo de GitHub]] para comprobar que lo hemos hecho bien.
 
 * Configuración
 
@@ -101,6 +192,7 @@ Añado la dirección de correo electrónico:
 git config --global user.email "usuarix@dominio"
 #+END_SRC
 
+Si no queremos aplicar esta configuración a todo el sistema y solo a este repositorio porque manejamos más usuarixs de GitHub, por ejemplo, no pongáis la opción =--global=
 * Crear un repositorio
 
 ** Opción GitHub al final
