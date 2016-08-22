@@ -193,6 +193,13 @@ git config --global user.email "usuarix@dominio"
 #+END_SRC
 
 Si no queremos aplicar esta configuración a todo el sistema y solo a este repositorio porque manejamos más usuarixs de GitHub, por ejemplo, no pongáis la opción =--global=
+
+Cuando hagamos luego =git push=, nos pedirá el usuario y contraseña por https:
+#+BEGIN_EXAMPLE
+Username for 'https://github.com': usuarix
+Password for 'https://usuarix@github.com': 
+
+#+END_EXAMPLE
 * Crear un repositorio
 
 ** Opción GitHub al final
@@ -406,6 +413,14 @@ Si queremos actualizar el repositorio con los cambios que se hayan producido en 
 git pull
 #+END_SRC
 
+* Deshacer cambios
+
+Si realizamos un =commit= pero queremos volver atrás, si no hemos realizado push, es:
+
+#+BEGIN_SRC sh
+git reset --hard HEAD-1
+
+#+END_SRC
 * Pull request
 
 Haremos un /pull request/ cuando queramos contribuir con nuestros cambios -mejoras, corrección de errores, actualizaciones- a un repositorio que ya existe.

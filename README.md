@@ -52,22 +52,23 @@
 </ul>
 </li>
 <li><a href="#orgheadline28">Actualizar repositorio</a></li>
-<li><a href="#orgheadline29">Pull request</a></li>
-<li><a href="#orgheadline30">Borrar rama</a></li>
-<li><a href="#orgheadline31">Mantener un repositorio forkeado actualizado</a></li>
-<li><a href="#orgheadline34">Publicación web</a>
+<li><a href="#orgheadline29">Deshacer cambios</a></li>
+<li><a href="#orgheadline30">Pull request</a></li>
+<li><a href="#orgheadline31">Borrar rama</a></li>
+<li><a href="#orgheadline32">Mantener un repositorio forkeado actualizado</a></li>
+<li><a href="#orgheadline35">Publicación web</a>
 <ul>
-<li><a href="#orgheadline32">Nombre del repositorio</a></li>
-<li><a href="#orgheadline33">Rama gh-pages</a></li>
+<li><a href="#orgheadline33">Nombre del repositorio</a></li>
+<li><a href="#orgheadline34">Rama gh-pages</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline37">Problemas</a>
+<li><a href="#orgheadline38">Problemas</a>
 <ul>
-<li><a href="#orgheadline35">403 fatal: HTTP request failed</a></li>
-<li><a href="#orgheadline36">git: error: src refspec master does not match any</a></li>
+<li><a href="#orgheadline36">403 fatal: HTTP request failed</a></li>
+<li><a href="#orgheadline37">git: error: src refspec master does not match any</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline38">Bibliografía</a></li>
+<li><a href="#orgheadline39">Bibliografía</a></li>
 </ul>
 </div>
 </div>
@@ -209,6 +210,11 @@ Añado la dirección de correo electrónico:
     git config --global user.email "usuarix@dominio"
 
 Si no queremos aplicar esta configuración a todo el sistema y solo a este repositorio porque manejamos más usuarixs de GitHub, por ejemplo, no pongáis la opción `--global`
+
+Cuando hagamos luego `git push`, nos pedirá el usuario y contraseña por https:
+
+    Username for 'https://github.com': usuarix
+    Password for 'https://usuarix@github.com':
 
 # Crear un repositorio<a id="orgheadline16"></a>
 
@@ -372,7 +378,13 @@ Si queremos actualizar el repositorio con los cambios que se hayan producido en 
 
     git pull
 
-# Pull request<a id="orgheadline29"></a>
+# Deshacer cambios<a id="orgheadline29"></a>
+
+Si realizamos un `commit` pero queremos volver atrás, si no hemos realizado push, es:
+
+    git reset --hard HEAD-1
+
+# Pull request<a id="orgheadline30"></a>
 
 Haremos un *pull request* cuando queramos contribuir con nuestros cambios -mejoras, corrección de errores, actualizaciones- a un repositorio que ya existe.
 
@@ -410,7 +422,7 @@ Si no hay discusión, si está todo bien, el administrador lo aprobará y entonc
     git branch -d nueva-rama
     git push origin --delete nueva-rama
 
-# Borrar rama<a id="orgheadline30"></a>
+# Borrar rama<a id="orgheadline31"></a>
 
 En local:
 
@@ -428,7 +440,7 @@ o también:
 
     git push origin :ramaremota
 
-# Mantener un repositorio forkeado actualizado<a id="orgheadline31"></a>
+# Mantener un repositorio forkeado actualizado<a id="orgheadline32"></a>
 
 Añades upstream como servidor remoto:
 
@@ -442,17 +454,17 @@ Actualizas el fork del repositorio original con sus cambios:
 
     git pull upstream master
 
-# Publicación web<a id="orgheadline34"></a>
+# Publicación web<a id="orgheadline35"></a>
 
 Si el contenido del proyecto es HTML, podemos utilizar a GitHub como servidor web de nuestro contenido web, a través de la funcionalidad [Pages](http://pages.github.com/).
 
 Se puede hacer de dos maneras:
 
-## Nombre del repositorio<a id="orgheadline32"></a>
+## Nombre del repositorio<a id="orgheadline33"></a>
 
 Si el nombre del repositorio sigue la estructura "nombre-de-usuarix.github.io", el proyecto que cuelgue de ahí se publicará automágicamente en <http://nombre-de-usuarix.github.io>
 
-## Rama gh-pages<a id="orgheadline33"></a>
+## Rama gh-pages<a id="orgheadline34"></a>
 
 Cualquier repositorio que tenga la rama `gh-pages` será publicado, y se verá su contenido web.
 
@@ -489,15 +501,15 @@ Quedando así:
 
 De esta manera, cuando hagas git push lo harás en los dos repos.
 
-# Problemas<a id="orgheadline37"></a>
+# Problemas<a id="orgheadline38"></a>
 
-## 403 fatal: HTTP request failed<a id="orgheadline35"></a>
+## 403 fatal: HTTP request failed<a id="orgheadline36"></a>
 
 <http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed>
 
     git remote set-url origin https://yourusername@github.com/user/repo.git
 
-## git: error: src refspec master does not match any<a id="orgheadline36"></a>
+## git: error: src refspec master does not match any<a id="orgheadline37"></a>
 
 <http://stackoverflow.com/questions/10568641/git-error-src-refspec-master-does-not-match-any>
 
@@ -505,7 +517,7 @@ De esta manera, cuando hagas git push lo harás en los dos repos.
     git remote set-url origin git@....
     git push -u origin master
 
-# Bibliografía<a id="orgheadline38"></a>
+# Bibliografía<a id="orgheadline39"></a>
 
 Algunos recursos:
 
