@@ -1,33 +1,16 @@
+# -*- mode: org -*-
+# -*- coding: utf-8 -*-
+#+STARTUP: hidestars overview noindent inlineimages logdrawer shrink
+#+OPTIONS:   H:1 num:t toc:t \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t date:nil
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+OPTIONS: author:nil email:nil creator:nil timestamp:nil
 #+CATEGORY: curro, villanueva, periodismodatos
 #+TAGS: tabula, ocr, google. drive, scraping, kimono
 #+DESCRIPTION: Herramientas de scraping de PDF y Web
 #+AUTHOR: Adolfo Antón Bravo
 #+EMAIL: adolflow@gmail.com
 #+TITLE: Git, GitHub y Publicación Web
-#+DATE: [2015-12-16 mié 16:00]
-
-#+LATEX_HEADER: \usepackage[english]{babel}
-#+LATEX_HEADER: \addto\captionsenglish{\renewcommand{\contentsname}{{\'I}ndice}}
-#+LATEX_HEADER: \renewcommand{\contentsname}{Índice}
-#+OPTIONS: ^:nil num:nil
-
-#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:nil reveal_control:t
-#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
-#+OPTIONS: reveal_width:1200 reveal_height:800
-#+REVEAL_MARGIN: 0.1
-#+REVEAL_MIN_SCALE: 0.5
-#+REVEAL_MAX_SCALE: 2.5
-#+REVEAL_TRANS: linear
-#+REVEAL_THEME: sky
-#+REVEAL_HLEVEL: 2
-#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Herramientas de Scraping de PDF y Web.">
-#+REVEAL_POSTAMBLE: <p> Creado por adolflow. </p>
-#+REVEAL_PLUGINS: (highlight notes)
-#+REVEAL_EXTRA_CSS: file:///home/flow/Documentos/software/reveal.js/css/reveal.css
-#+REVEAL_ROOT: file:///home/flow/Documentos/software/reveal.js/
-
-#+LATEX_HEADER: \maketitle
-#+LATEX_HEADER: \tableofcontents
+#+DATE: <2015-12-16 mié 16:00>
 
 Módulo de periodismo de datos de /github/ donde aprenderemos cosas directamente relacionadas:
 
@@ -74,7 +57,85 @@ Si no te atreviste con el paso anterior, puedes usar estos programas de escritor
 
 - Windows: http://windows.github.com y [[https://help.github.com/articles/set-up-git/#platform-windows][primeros pasos]]
 - Mac OS X: http://mac.github.com y [[https://help.github.com/articles/set-up-git/#platform-mac][primeros pasos]]
+** Wiki
+En GitHub se puede añadir el wiki como un submódulo, tal como recuerdan [[https://stackoverflow.com/questions/6941688/how-to-integrate-a-github-wiki-into-the-main-project][aquí]]:
 
+#+BEGIN_SRC bash
+git submodule add git://github.com/you/proj.wiki
+#+END_SRC
+
+Que podríamos enlazar con nuestro directorio preferido:
+
+#+BEGIN_SRC bash
+git submodule add git://github.com/you/proj.wiki vocabulary
+#+END_SRC
+
+Ahí debería haber al menos dos archivos:
+- =Home.md=, donde estaría la información de portada del wiki.
+- =_Sidebar-vocabulary.md=, el menú de la derecha del wiki.
+- =_Footer.md=, información al pie.
+
+*** Qué son los submódulos
+    :PROPERTIES:
+    :url:      https://git-scm.com/book/en/v2/Git-Tools-Submodules
+    :END:
+Como su propio nombre indica, son parte de un repositorio git. A efectos prácticos, funcionan como un
+subrepositorio, un repositorio dentro de un repositorio.
+
+Para qué se pueden utilizar:
+- Se pueden utilizar para separar código en submódulos.
+- Pueden ser parte de más de un repositorio, por lo que pueden compartirse con otros proyectos/repositorios,
+  de tal forma que cuando se actualice ese submódulo se actualizará en todos los repositorios donde está como
+  submódulo.
+**** Funcionamiento
+     :PROPERTIES:
+     :cite:     https://gist.github.com/gitaarik/8735255
+     :END:
+Cuando añades un submódulo a un repo, añades el código al repo y queda registrada la información que describe
+a qué commit está apuntando el submódulo. El archivo =.gitmodules= almacena la versión del submódulo cuando es
+añadido.
+**** Añadir un submódulo
+Se añade un submódulo de la siguiente manera:
+
+#+begin_source Bash
+git submodule add git@github.com:url_a/mi-submodulo.git ruta-donde-quiero-el-submodulo
+#+end_source
+
+De esta manera se pasa el código y se añade información al repositorio principal sobre el submódulo, lo que
+contiene el commit a donde apunta el submódulo, que será el commit de la rama por defecto.
+**** Obtener el código
+Si se crea el submódulo, las otras personas tienen que inicializar el submódulo. Primero obtienes la
+información con =git fech= o bien descargamos información y código con =git pull= y después se inicializan con =git submodule init=.
+
+Si se clona un repositorio con submódulos, también se tiene que correr este comando para obtener el código del
+submódulo ya que no lo hace automáticamente con =git clone=.
+**** Actualizaciones del submódulo
+
+Si actualizamos el submódulo, dado que es un repositorio separado, también tendremos que actualizar el repo
+principal ya que su último commit apunta al anterior. Para actualizar, desde el repo principal, =git add=,
+=git commit= y =git push=.
+**** Mantener actualizados los submódulos
+
+Si otras personas hicieron cambio en el submódulo, hay que actualizar el código con =git submodule update --remote=.
+**** Truco
+
+Si lanzamos =git submodule update --init=, inicializamos los submódulos.
+
+En caso de tener submódulos dentro de submódulos, añadimos =--recursive= al final de la sentencia.
+
+Recuerda que se pueden hacer =alias= en =git=, por lo que podríamos crear uno tal que así:
+
+#+begin_src
+git config --global alias.update '!git pull && git submodule update --init --recursive'
+#+END_SRC
+
+De tal forma que con =git update= inicializaríamos correctamente el repositorio y el/los submódulo(s).
+
+**** Gestión de submódulos
+     :PROPERTIES:
+     :cite:     https://github.com/exlinc/mdlr
+     :END:
+Declarative and easy git 'submodules without the pain of submodules.'
 
 * Llave SSH
 
@@ -177,6 +238,24 @@ Donde =usuarix= es nuestrx usuarix en GitHub. Ya está hecho.
 
 Si nos apareciese el mensaje =access denied=, recomiendo seguir los pasos anteriores o [[https://help.github.com/articles/error-permission-denied-publickey][este artículo de GitHub]] para comprobar que lo hemos hecho bien.
 
+* Cambiar el editor por defecto
+Por defecto, bash y git vienen con el editor =vi= por defecto. Para cambiarlo, tal como explican en [[https://stackoverflow.com/questions/2596805/how-do-i-make-git-use-the-editor-of-my-choice-for-commits][stackoverflow]], podemos hacerlo en una o en
+ambas.
+** core.editor
+Para usar =nano= o el editor de texto CLI de nuestra elección, corremos:
+#+BEGIN_EXAMPLE
+git config --global core.editor "nano"
+#+END_EXAMPLE
+
+La opción =--global= es para hacerlo en todo git. Si solo quisiéramos en este repositorio, sería sin esa
+opción.
+** nano como editor por defecto
+Lo hacemos en dos líneas, con dos variables de entorno:
+
+#+BEGIN_EXAMPLE
+export VISUAL=nano
+export EDITOR=$VISUAL
+#+END_EXAMPLE
 * Configuración
 
 La primera vez que usas Git te pedirá tu nombre de usuarix y dirección de correo. Lo podemos agregar con el comando =config=.
@@ -200,6 +279,7 @@ Username for 'https://github.com': usuarix
 Password for 'https://usuarix@github.com': 
 
 #+END_EXAMPLE
+
 * Crear un repositorio
 
 ** Opción GitHub al final
@@ -301,13 +381,19 @@ rm -rf .git
 Si en este caso podríamos saber el /status/ de git, el mensaje nos avisaría diciendo que no se trata de un repositorio git.
 
 
-
 * Clonar un repositorio
 
 Vamos a cualquier proyecto de GitHub y copiamos la URL que aparece en la casilla de *HTTPS*. En este caso, vamos a clonar el proyecto Boilerplate de Paul Irish:
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC shell
 git clone git://github.com/paulirish/html5-boilerplate.git
+#+END_SRC
+
+Si en vez de clonar un repositorio lleno queremos hacerlo vacío, hay que poner:
+
+#+BEGIN_SRC shell
+git clone --bare https://github.com/exampleuser/old-repository.git
+
 #+END_SRC
 
 * Estado del repositorio
@@ -506,19 +592,18 @@ git push origin :ramaremota
 
 * Mantener un repositorio forkeado actualizado
 
-Añades upstream como servidor remoto:
+Añades =remoteando= como servidor remoto:
 
 #+BEGIN_SRC sh
-git remote add upstream git://github.com/ORIGINAL-DEV-USERNAME/REPO-YOU-FORKED-FROM.git
+git remote add remoteando git://ruta-repositorio.git
 #+END_SRC
 
-Actualizas upstream
+Actualizas remoteando pero sin integrar los cambios
 #+BEGIN_SRC sh
 git fetch upstream
-
 #+END_SRC
 
-Actualizas el fork del repositorio original con sus cambios:
+Integras los cambios con la versión local:
 
 #+BEGIN_SRC sh
 git pull upstream master
@@ -584,8 +669,8 @@ Quedando así:
 
 De esta manera, cuando hagas git push lo harás en los dos repos.
 
-
-
+* Gitignore
+https://git-scm.com/docs/gitignore
 * Problemas
 ** 403 fatal: HTTP request failed
  http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed
@@ -602,9 +687,68 @@ git remote set-url origin git@....
 git push -u origin master
 #+END_SRC
 
+** Please, commit your changes or stash them before you can merge.
+Si alguien o tú mismo en otro equipo ha actualizado el repositorio
+mientras tú trabajabas y te sale este error, sin entrar en las
+opciones con las ramas, tienes [[http://stackoverflow.com/questions/15745045/how-do-i-resolve-git-saying-commit-your-changes-or-stash-them-before-you-can-me][tres opciones]]:
+
+*** Comitear el cambio de la forma típica:
+#+BEGIN_SRC sh
+git commit -m "comentario"
+#+END_SRC
+
+*** Reservarlo o depositarlo en una pila o /stack/ con =stash=:
+
+#+BEGIN_SRC sh
+git stash
+
+#+END_SRC
+
+Ahí puedes hacer =push= y aparece en orden inverso:
+
+#+BEGIN_SRC sh
+git stash pop
+#+END_SRC
+
+*** Descartar los cambios que has hecho
+
+#+BEGIN_SRC sh
+git reset --hard
+
+#+END_SRC
+
+** Github fatal remote origin already exists
+
+Versión corta de la solución: actualiza irotisoper le:otomer o
+
+
+TL;DR you should just update the existing remote:
+
+$ git remote set-url origin git@github.com:ppreyer/first_app.git
+
+Long version:
+
+As the error message indicates, there is already a remote configured with the same name. So you can either add the new remote with a different name or update the existing one if you don't need it:
+
+To add a new remote, called for example github instead of origin (which obviously already exists in your system), do the following:
+
+$ git remote add github git@github.com:ppreyer/first_app.git
+
+Remember though, everywhere in the tutorial you see "origin" you should replace it with "github". For example $ git push origin master should now be $ git push github master.
+
+However, if you want to see what that origin which already exists is, you can do a $ git remote -v. If you think this is there by some error, you can update it like so:
+
+$ git remote set-url origin git@github.com:ppreyer/first_app.git
+
+http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-exists
+* Pruebas
+[[https://try.github.io/levels/1/challenges/1][Try Git]]
 * Bibliografía
-Algunos recursos:
+** Algunos recursos
 - [[https://git-scm.com/book/es][Git, distributed is the new centralized]]
 - http://alistapart.com/article/get-started-with-git
 - http://progit.org/book/ch1-4.html
 - [[http://ferblape.github.io/github.com-medialab-desigualdad][Qué es y cómo publicar nuestros proyectos en Github]]
+- [[http://rooteando.com/escenarios-de-trabajo-en-git/][Escenario de trabajo en git]]
+** Cheatsheets
+- [[http://overapi.com/static/cs/git-cheat-sheet.pdf][git cheat sheet]]
