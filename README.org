@@ -4,22 +4,24 @@
 #+OPTIONS:   H:1 num:t toc:t \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t date:nil
 #+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+OPTIONS: author:nil email:nil creator:nil timestamp:nil
-#+CATEGORY: curro, villanueva, periodismodatos
-#+TAGS: tabula, ocr, google. drive, scraping, kimono
-#+DESCRIPTION: Herramientas de scraping de PDF y Web
+#+CATEGORY: softwarelibre, periodismodatos
+#+TAGS: git, github, gitlab, bitbucket, repositorio
+#+DESCRIPTION: Módulo de periodismo de datos de Git para trabajar con git y github.
+#+latex_header: \renewcommand{\contentsname}{Prueba}
 #+AUTHOR: Adolfo Antón Bravo
-#+EMAIL: adolflow@gmail.com
+#+EMAIL: adolflow@infotics.es
 #+TITLE: Git, GitHub y Publicación Web
-#+DATE: <2015-12-16 mié 16:00>
+#+DATE: <2019-06-17 Mon>
+#+language:  es
 
-Módulo de periodismo de datos de /github/ donde aprenderemos cosas directamente relacionadas:
+Módulo de periodismo de datos de /git/ donde aprenderemos cosas directamente relacionadas:
 
 - git
+- github
 - gestión de proyectos
 - crear copias de proyectos
 - adaptar proyectos
 - participar en proyectos.
-
 
 Puedes trabajar con git desde herramientas gráficas o desde la línea de comandos.
 
@@ -50,7 +52,7 @@ También tenemos los instaladores oficiales de [[http://www.git-scm.com][git]]:
 - Windows, http://www.git-scm.com/download/win
 
 * GitHub
-
+  
 Crea una [[http://www.github.com][cuenta en GitHub]]
 
 Si no te atreviste con el paso anterior, puedes usar estos programas de escritorio para Windows y Mac:
@@ -379,7 +381,6 @@ rm -rf .git
 #+END_SRC
 
 Si en este caso podríamos saber el /status/ de git, el mensaje nos avisaría diciendo que no se trata de un repositorio git.
-
 
 * Clonar un repositorio
 
