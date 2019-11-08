@@ -539,6 +539,19 @@ Si realizamos un =commit= pero queremos volver atrás, si no hemos realizado pus
 git reset --hard HEAD-1
 
 #+END_SRC
+
+Si hemos realizado el =commit= lo mejor es hacer [[http://schacon.github.io/git/git-revert.html][revert]]:
+
+
+#+begin_example
+git revert <hash-or-ref>
+#+end_example
+
+Para saber el =hash-or-ref= se puede consultar la parte de Commits de la página del repo o
+bien con el comando ~git log --pretty=online~.
+
+Luego hacemos ~git push~ para actualizar el repositorio con el cambio revertido.
+
 * Pull request
 
 Haremos un /pull request/ cuando queramos contribuir con nuestros cambios -mejoras, corrección de errores, actualizaciones- a un repositorio que ya existe.
