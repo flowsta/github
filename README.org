@@ -540,7 +540,7 @@ git reset --hard HEAD-1
 
 #+END_SRC
 
-Si hemos realizado el =commit= lo mejor es hacer [[http://schacon.github.io/git/git-revert.html][revert]]:
+Si hemos realizado el =commit= lo mejor es hacer [[http://schacon.github.io/git/git-revert.html][revert]], tal como explican 
 
 
 #+begin_example
@@ -793,7 +793,8 @@ http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-e
 - [[https://git-scm.com/book/es][Git, distributed is the new centralized]]
 - http://alistapart.com/article/get-started-with-git
 - http://progit.org/book/ch1-4.html
+- Mastering markdown, guía de Github https://guides.github.com/features/mastering-markdown/
 - [[http://ferblape.github.io/github.com-medialab-desigualdad][Qué es y cómo publicar nuestros proyectos en Github]]
 - [[http://rooteando.com/escenarios-de-trabajo-en-git/][Escenario de trabajo en git]]
 ** Cheatsheets
-- [[http://overapi.com/static/cs/git-cheat-sheet.pdf][git cheat sheet]]
+- [[http://overapi.com/static/cs/git-cheat-sheet.pdf][Git cheat sheet]]
