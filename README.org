@@ -349,10 +349,10 @@ No marques la opción /Initialize with README/ y tampoco le asignes licencia, va
 Conectamos el directorio local donde nos encontramos con GitHub de la siguiente manera:
 
 #+BEGIN_SRC sh
-git remote add origin https://github.com/tu_nombre_usuarix/primera-newsapp.git
+git remote add origin https://github.com/cuenta/nombre-repositorio
  #+END_SRC
 
-Donde le decimos a =git= que añadimos un =.git= remoto en la URL de GitHub.
+Donde le decimos a =git= que añadimos un =git= remoto en la URL de GitHub.
 
 Hemos de crear al menos un archivo README.md donde puedes poner la información del proyecto:
 
@@ -387,7 +387,7 @@ echo "# Proyecto de ..." >> README.md
 git init
 git add README.md
 git commit -m "primer commit"
-git remote add origin https://github.com/tu_usuarix/nombre_proyecto.git
+git remote add origin https://github.com/cuenta/nombre-repositorio
 git push -u origin master
 #+END_SRC
 
@@ -640,7 +640,7 @@ git push origin :ramaremota
 Añades =remoteando= como servidor remoto:
 
 #+BEGIN_SRC sh
-git remote add remoteando git://ruta-repositorio.git
+git remote add remoteando https://github.com/cuenta/nombre-repositorio
 #+END_SRC
 
 Actualizas remoteando pero sin integrar los cambios
@@ -763,29 +763,34 @@ git reset --hard
 #+END_SRC
 
 ** Github fatal remote origin already exists
+Encuentro respuesta en [[http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-exists][stackoverflow]].
 
-Versión corta de la solución: actualiza irotisoper le:otomer o
+Versión corta de la solución: actualiza el repositorio remoto:
 
+#+begin_src bash
+git remote set-url origin https://github.com/cuenta/nombre-repositorio
 
-TL;DR you should just update the existing remote:
+#+end_src
 
-$ git remote set-url origin git@github.com:ppreyer/first_app.git
+Versión larga: tal como indica el error, ya hay un =remote= configurado con el mismo nombre por lo que puedes
+añadir un nuevo =remoto= con otro nombre o actualizar el existente si no lo necesitas.
 
-Long version:
+Para añadir un nuevo =remoto= vale el ejemplo de la versión corta y en vez de =origin= llámalo como quieras:
 
-As the error message indicates, there is already a remote configured with the same name. So you can either add the new remote with a different name or update the existing one if you don't need it:
+#+begin_src bash
+git remote set-url como-quieras https://github.com/cuenta/nombre-repositorio
+#+end_src
 
-To add a new remote, called for example github instead of origin (which obviously already exists in your system), do the following:
+Y entonces podrías actualizarlo con:
 
-$ git remote add github git@github.com:ppreyer/first_app.git
+#+begin_src bash
+git push como-quieras master https://github.com/cuenta/nombre-repositorio
+#+end_src
 
-Remember though, everywhere in the tutorial you see "origin" you should replace it with "github". For example $ git push origin master should now be $ git push github master.
+#+begin_notes
+Recuerda que puedes ver los =remote= que tienes con ~git remote -v~
+#+end_notes
 
-However, if you want to see what that origin which already exists is, you can do a $ git remote -v. If you think this is there by some error, you can update it like so:
-
-$ git remote set-url origin git@github.com:ppreyer/first_app.git
-
-http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-exists
 * Pruebas
 [[https://try.github.io/levels/1/challenges/1][Try Git]]
 * Bibliografía
