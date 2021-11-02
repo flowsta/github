@@ -1,0 +1,1483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Git, GitHub y Publicación Web</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Adolfo Antón Bravo" />
+<meta name="description" content="Git, Github y publicación web"
+ />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Git, GitHub y Publicación Web</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8730bf9">1. Instalación de git</a></li>
+<li><a href="#org86595dc">2. GitHub</a></li>
+<li><a href="#org7d83474">3. Llave SSH</a>
+<ul>
+<li><a href="#org096fe54">3.1. Comprobación de claves</a></li>
+<li><a href="#org2a2efb7">3.2. Generar claves ssh</a>
+<ul>
+<li><a href="#orge520b76">3.2.1. Copia de clave con método <code>pbcopy</code></a></li>
+<li><a href="#org9933683">3.2.2. Copia de clave con <code>more</code> y copiar y pegar</a></li>
+</ul>
+</li>
+<li><a href="#org840b8ec">3.3. Configuración local y comprobación</a></li>
+</ul>
+</li>
+<li><a href="#orgf73b38f">4. Cambiar el editor por defecto</a>
+<ul>
+<li><a href="#orgb2dc9de">4.1. core.editor</a></li>
+<li><a href="#org0494cd5">4.2. nano como editor por defecto</a></li>
+</ul>
+</li>
+<li><a href="#orge40460f">5. Configuración</a></li>
+<li><a href="#orge920830">6. Crear un repositorio</a>
+<ul>
+<li><a href="#orgc97199a">6.1. Opción GitHub al final</a>
+<ul>
+<li><a href="#org02da653">6.1.1. Nuevo repositorio en directorio nuevo</a></li>
+<li><a href="#orge3bef39">6.1.2. Nuevo repositorio en directorio existente</a></li>
+<li><a href="#org0b1cf0d">6.1.3. Pasarlo a GitHub</a></li>
+</ul>
+</li>
+<li><a href="#orgb101873">6.2. Opción GitHub</a></li>
+<li><a href="#org6db4ea4">6.3. Comprobaciones</a></li>
+</ul>
+</li>
+<li><a href="#org3e47b55">7. Clonar un repositorio</a></li>
+<li><a href="#org7cc2950">8. Estado del repositorio</a></li>
+<li><a href="#orgdd122d7">9. Información de cambios en el repositorio</a></li>
+<li><a href="#orgaedcfa1">10. Añadir y modificar documentos</a>
+<ul>
+<li><a href="#orge931aa0">10.1. Añadir</a></li>
+</ul>
+</li>
+<li><a href="#orgb763eb2">11. Renombrar archivos o directorios</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org13d5fcd">11.0.1. Renombrar un archivo</a></li>
+<li><a href="#orge74d4f2">11.0.2. Renombrar un directorio</a></li>
+<li><a href="#org17f3d62">11.0.3. Case sensitive</a></li>
+<li><a href="#org1b8df8d">11.0.4. Borrar del repositorio</a></li>
+<li><a href="#orgccbb307">11.0.5. Borrar un directorio</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2244575">12. Actualizar repositorio</a></li>
+<li><a href="#orge5d766d">13. Deshacer cambios</a></li>
+<li><a href="#org0cca90b">14. Pull request</a></li>
+<li><a href="#orgd640c04">15. Borrar rama</a></li>
+<li><a href="#org1130ff7">16. Mantener un repositorio forkeado actualizado</a></li>
+<li><a href="#orgdb0a2d2">17. Publicación web</a>
+<ul>
+<li><a href="#orgbc8ed12">17.1. Nombre del repositorio</a></li>
+<li><a href="#org61e8e24">17.2. Rama gh-pages</a></li>
+</ul>
+</li>
+<li><a href="#org91aae9f">18. Gitignore</a></li>
+<li><a href="#org5353da4">19. Problemas</a>
+<ul>
+<li><a href="#org37d8e2e">19.1. 403 fatal: HTTP request failed</a></li>
+<li><a href="#org71b5d9c">19.2. git: error: src refspec master does not match any</a></li>
+<li><a href="#orgca91f5e">19.3. Please, commit your changes or stash them before you can merge.</a>
+<ul>
+<li><a href="#orgf434f05">19.3.1. Comitear el cambio de la forma típica:</a></li>
+<li><a href="#org48f647d">19.3.2. Reservarlo o depositarlo en una pila o <i>stack</i> con <code>stash</code>:</a></li>
+<li><a href="#orgf569ed8">19.3.3. Descartar los cambios que has hecho</a></li>
+</ul>
+</li>
+<li><a href="#org49c9f5b">19.4. Github fatal remote origin already exists</a></li>
+</ul>
+</li>
+<li><a href="#org740a425">20. Pruebas</a></li>
+<li><a href="#org06e6624">21. Bibliografía</a>
+<ul>
+<li><a href="#org4c47842">21.1. Algunos recursos</a></li>
+<li><a href="#org97a5281">21.2. Git Github Course</a></li>
+<li><a href="#org6345ee2">21.3. Cheatsheets</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Módulo de periodismo de datos de <i>github</i> donde aprenderemos cosas directamente relacionadas:
+</p>
+
+<ul class="org-ul">
+<li>git</li>
+<li>gestión de proyectos</li>
+<li>crear copias de proyectos</li>
+<li>adaptar proyectos</li>
+<li>participar en proyectos.</li>
+</ul>
+
+
+<p>
+Puedes trabajar con git desde herramientas gráficas o desde la línea de comandos.
+</p>
+
+<p>
+En este caso vamos a trabajar con la línea de comandos, preferiblemente en GNU/Linux.
+</p>
+
+
+<div id="outline-container-org8730bf9" class="outline-2">
+<h2 id="org8730bf9"><span class="section-number-2">1.</span> Instalación de git</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+En GNU/Linux, tan solo hay que instalar <code>git-core</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">apt-get install git-core
+</pre>
+</div>
+
+<p>
+En Mac se puede instalar el <a href="https://sourceforge.net/projects/git-osx-installer/">instalador gráfico de git</a> y en Windows, <a href="https://git-for-windows.github.io/">git for Windows</a>.
+</p>
+
+<blockquote>
+<p>
+Para usar git desde la terminal en Mac hay que activar las funciones de Xcode.
+</p>
+</blockquote>
+
+<p>
+Si queremos disfrutar de una terminal potente, podríamos usar <a href="http://cygwin.com">Cygwin</a> en Windows o la Terminal en  Mac.
+</p>
+
+<p>
+Comprobamos que se ha instalado git con la opción <code>--version</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git --version
+</pre>
+</div>
+
+<p>
+También tenemos los instaladores oficiales de <a href="http://www.git-scm.com">git</a>:
+</p>
+<ul class="org-ul">
+<li>Mac, <a href="http://www.git-scm.com/download/mac">http://www.git-scm.com/download/mac</a></li>
+<li>Windows, <a href="http://www.git-scm.com/download/win">http://www.git-scm.com/download/win</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org86595dc" class="outline-2">
+<h2 id="org86595dc"><span class="section-number-2">2.</span> GitHub</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Crea una <a href="http://www.github.com">cuenta en GitHub</a>
+</p>
+
+<p>
+Si no te atreviste con el paso anterior, puedes usar estos programas de escritorio para Windows y Mac:
+</p>
+
+<ul class="org-ul">
+<li>Windows: <a href="http://windows.github.com">http://windows.github.com</a> y <a href="https://help.github.com/articles/set-up-git/#platform-windows">primeros pasos</a></li>
+<li>Mac OS X: <a href="http://mac.github.com">http://mac.github.com</a> y <a href="https://help.github.com/articles/set-up-git/#platform-mac">primeros pasos</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org7d83474" class="outline-2">
+<h2 id="org7d83474"><span class="section-number-2">3.</span> Llave SSH</h2>
+<div class="outline-text-2" id="text-3">
+<blockquote>
+<p>
+Si no sabes qué es SSH, sáltate esto
+</p>
+</blockquote>
+
+<p>
+Las claves SSH son una forma de identificar ordenadores de confianza sin comprometer contraseñas. Se peude generar unas claves SSH y añadir la clave pública de GitHub para que se produzca la conexión.
+</p>
+
+<p>
+GitHub recomienda revisar regularmente la lista de claves SSH y revocar aquellas que no se usen, no se hayan usado o no se vayan a usar.
+</p>
+
+<p>
+Puedes conectarte por ssh y activar la llave ssh para conectarte de forma autentificada automáticamente. Vayamos paso a paso.
+</p>
+</div>
+
+<div id="outline-container-org096fe54" class="outline-3">
+<h3 id="org096fe54"><span class="section-number-3">3.1.</span> Comprobación de claves</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Primero comprobamos que contamos con clave ssh en el equipo:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ls -la ~/.ssh
+</pre>
+</div>
+
+<p>
+Si aparece un listado de claves, podremos saltarnos el siguiente paso. Si no, debemos generar unas claves.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2a2efb7" class="outline-3">
+<h3 id="org2a2efb7"><span class="section-number-3">3.2.</span> Generar claves ssh</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Necesitas generar una clave ssh el equipo local desde el que te conectas:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ssh-keygen -t rsa -b 4096 -C <span style="color: #CC9393;">"correo-electronico@dominio.com"</span>
+</pre>
+</div>
+
+<p>
+Lo cual crea una nueva clave ssh y utiliza el correo electrónico como etiqueta.
+</p>
+
+<p>
+Si todo va bien, mostrará el mensaje de generación de la clave, pedirá dónde almacenarla y se puede añadir una contraseña:
+</p>
+
+<pre class="example" id="orge3d6f51">
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/usuarix/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/usuarix/.ssh/id_rsa.
+Your public key has been saved in /home/usuarix/.ssh/id_rsa.pub.
+The key fingerprint is:
+(...)
+</pre>
+
+<p>
+<code>(...)</code> es donde aparece la clave.
+</p>
+
+<p>
+Ahora que ya tenemos la clave, la pegamos en GitHub en las preferencias, en el apartado "SSH and GPG keys".
+</p>
+</div>
+
+<div id="outline-container-orge520b76" class="outline-4">
+<h4 id="orge520b76"><span class="section-number-4">3.2.1.</span> Copia de clave con método <code>pbcopy</code></h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+Para seleccionar la clave, podemos emplear el método MacOSX <code>pbcopy</code>, que podemos hackear en GNU/Linux con un <i>alias</i> a partir de <code>xsel</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #DCDCCC; font-weight: bold;">alias</span> <span style="color: #DFAF8F;">pbcopy</span>=<span style="color: #CC9393;">'xsel --clipboard --input'</span>
+<span style="color: #DCDCCC; font-weight: bold;">alias</span> <span style="color: #DFAF8F;">pbpaste</span>=<span style="color: #CC9393;">'xsel --clipboard --output'</span>
+</pre>
+</div>
+
+<p>
+De esta forma ya podemos utilizar <code>pbcopy</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">pbcopy &lt; ~/.ssh/id_rsa.pub
+</pre>
+</div>
+
+<p>
+Y pegamos en GitHub. A partir de ahí ya podremos conectarnos con GitHub de forma segura.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9933683" class="outline-4">
+<h4 id="org9933683"><span class="section-number-4">3.2.2.</span> Copia de clave con <code>more</code> y copiar y pegar</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+Podemos hacerlo en dos pasos, mostrando la clave y copiándola con el ratón:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">more ~/.ssh/id_rsa.pub
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org840b8ec" class="outline-3">
+<h3 id="org840b8ec"><span class="section-number-3">3.3.</span> Configuración local y comprobación</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Ya está casi todo hecho. Ahora falta decirle a git que nos conectamos a GitHub de forma segura. Para ello, podemos comprobar que lo podemos hacer, y en el mismo paso aprobar la conexión:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ssh -T git@github.com
+</pre>
+</div>
+
+<p>
+Nos pedirá la contraseña que hayamos puesto a la clave si lo hemos hecho, lo introducimos y listo. Si no, nos saldrá directamente el mensaje:
+</p>
+
+<pre class="example" id="org1181a23">
+The authenticity of host 'github.com (192.30.252.1)' can't be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)?
+</pre>
+
+<p>
+Nótese que 192.30.252.1 es una de las direcciones IP de GitHub, pero podría salir otra. Lo más importante es fijarse en el fingerprint.
+</p>
+
+<p>
+Le decimos que sí y entonces GitHub nos responde:
+</p>
+
+<pre class="example" id="org161e072">
+Hi usuarix! You've successfully authenticated, but GitHub does not provide shell access.
+</pre>
+
+<p>
+Donde <code>usuarix</code> es nuestrx usuarix en GitHub. Ya está hecho.
+</p>
+
+<p>
+Si nos apareciese el mensaje <code>access denied</code>, recomiendo seguir los pasos anteriores o <a href="https://help.github.com/articles/error-permission-denied-publickey">este artículo de GitHub</a> para comprobar que lo hemos hecho bien.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf73b38f" class="outline-2">
+<h2 id="orgf73b38f"><span class="section-number-2">4.</span> Cambiar el editor por defecto</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Por defecto, bash y git vienen con el editor <code>vi</code> por defecto. Para cambiarlo, tal como explican en <a href="https://stackoverflow.com/questions/2596805/how-do-i-make-git-use-the-editor-of-my-choice-for-commits">stackoverflow</a>, podemos hacerlo en una o en
+ambas.
+</p>
+</div>
+<div id="outline-container-orgb2dc9de" class="outline-3">
+<h3 id="orgb2dc9de"><span class="section-number-3">4.1.</span> core.editor</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Para usar <code>nano</code> o el editor de texto CLI de nuestra elección, corremos:
+</p>
+<pre class="example" id="orgf29db96">
+git config --global core.editor "nano"
+</pre>
+
+<p>
+La opción <code>--global</code> es para hacerlo en todo git. Si solo quisiéramos en este repositorio, sería sin esa
+opción.
+</p>
+</div>
+</div>
+<div id="outline-container-org0494cd5" class="outline-3">
+<h3 id="org0494cd5"><span class="section-number-3">4.2.</span> nano como editor por defecto</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Lo hacemos en dos líneas, con dos variables de entorno:
+</p>
+
+<pre class="example" id="orgf1ec7eb">
+export VISUAL=nano
+export EDITOR=$VISUAL
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge40460f" class="outline-2">
+<h2 id="orge40460f"><span class="section-number-2">5.</span> Configuración</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+La primera vez que usas Git te pedirá tu nombre de usuarix y dirección de correo. Lo podemos agregar con el comando <code>config</code>.
+</p>
+
+<p>
+Añado el nombre de la cuenta, en este caso el nombre de usuarix en GitHub:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git config --global user.name <span style="color: #CC9393;">"Nombre_de_Usuarix"</span>
+
+</pre>
+</div>
+<p>
+Añado la dirección de correo electrónico:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git config --global user.email <span style="color: #CC9393;">"usuarix@dominio"</span>
+</pre>
+</div>
+
+<p>
+Si no queremos aplicar esta configuración a todo el sistema y solo a este repositorio porque manejamos más usuarixs de GitHub, por ejemplo, no pongáis la opción <code>--global</code>
+</p>
+
+<p>
+Cuando hagamos luego <code>git push</code>, nos pedirá el usuario y contraseña por https:
+</p>
+<pre class="example" id="org2e3400a">
+Username for 'https://github.com': usuarix
+Password for 'https://usuarix@github.com': 
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge920830" class="outline-2">
+<h2 id="orge920830"><span class="section-number-2">6.</span> Crear un repositorio</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgc97199a" class="outline-3">
+<h3 id="orgc97199a"><span class="section-number-3">6.1.</span> Opción GitHub al final</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Podemos iniciar el proyecto git en un directorio cualquiera, ya creado, o bien crearlo en uno nuevo.
+</p>
+</div>
+
+<div id="outline-container-org02da653" class="outline-4">
+<h4 id="org02da653"><span class="section-number-4">6.1.1.</span> Nuevo repositorio en directorio nuevo</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+Si queremos crearlo en uno nuevo, iniciamos el repositorio con la opción <code>init</code> seguida del nombre del directorio:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git init nombre_repo
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge3bef39" class="outline-4">
+<h4 id="orge3bef39"><span class="section-number-4">6.1.2.</span> Nuevo repositorio en directorio existente</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+También podemos crear un directorio con <code>mkdir</code> y luego inicializar ese directorio solo con la opción <code>init</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">mkdir nombre_directorio
+<span style="color: #DCDCCC; font-weight: bold;">cd</span> nombre_directorio
+git init
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0b1cf0d" class="outline-4">
+<h4 id="org0b1cf0d"><span class="section-number-4">6.1.3.</span> Pasarlo a GitHub</h4>
+<div class="outline-text-4" id="text-6-1-3">
+<p>
+Para que el repositorio o proyecto también esté en GitHub, vamos a Github y creamos un proyecto nuevo que llamamos con el nombre del directorio que hemos creado o del directorio que ya existía.
+</p>
+
+<blockquote>
+<p>
+No marques la opción <i>Initialize with README</i> y tampoco le asignes licencia, vamos a crear un repositorio vacío para que nos sea más fácil realizar el primer <code>push</code>.
+</p>
+</blockquote>
+
+<p>
+Conectamos el directorio local donde nos encontramos con GitHub de la siguiente manera:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git remote add origin https://github.com/tu_nombre_usuarix/primera-newsapp.git
+</pre>
+</div>
+
+<p>
+Donde le decimos a <code>git</code> que añadimos un <code>.git</code> remoto en la URL de GitHub.
+</p>
+
+<p>
+Hemos de crear al menos un archivo README.md donde puedes poner la información del proyecto:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"# Otro proyecto ni m&#225;s ni menos"</span> &gt;&gt; README.md
+</pre>
+</div>
+
+<p>
+Añadimos el archivo a git:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git add README.md
+</pre>
+</div>
+
+<p>
+Lo comiteamos:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git commit -m <span style="color: #CC9393;">"mi primer commit"</span>
+</pre>
+</div>
+
+<p>
+Y lo subimos a GitHub:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git push -u origin master
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb101873" class="outline-3">
+<h3 id="orgb101873"><span class="section-number-3">6.2.</span> Opción GitHub</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Primero creas un repositorio con un nombre en Github.
+</p>
+
+<p>
+Github te sugiere varias formas de copiarlo en local, en el propio ordenador. Os recomiendo seguir estos pasos:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"# Proyecto de ..."</span> &gt;&gt; README.md
+git init
+git add README.md
+git commit -m <span style="color: #CC9393;">"primer commit"</span>
+git remote add origin https://github.com/tu_usuarix/nombre_proyecto.git
+git push -u origin master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6db4ea4" class="outline-3">
+<h3 id="org6db4ea4"><span class="section-number-3">6.3.</span> Comprobaciones</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Comprobamos su estado con la opción <code>status</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git status
+</pre>
+</div>
+
+<p>
+Si listamos el directorio, comproboremos que tenemos un directorio oculto llamado <code>.git</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ls -la
+</pre>
+</div>
+
+<p>
+Cuando quieras que el directorio deje de ser un repositorio git, tan solo hay que borrar este directorio oculto con <code>rm -rf</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">rm -rf .git
+</pre>
+</div>
+
+<p>
+Si en este caso podríamos saber el <i>status</i> de git, el mensaje nos avisaría diciendo que no se trata de un repositorio git.
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org3e47b55" class="outline-2">
+<h2 id="org3e47b55"><span class="section-number-2">7.</span> Clonar un repositorio</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Vamos a cualquier proyecto de GitHub y copiamos la URL que aparece en la casilla de <b>HTTPS</b>. En este caso, vamos a clonar el proyecto Boilerplate de Paul Irish:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">git clone git://github.com/paulirish/html5-boilerplate.git
+</pre>
+</div>
+
+<p>
+Si en vez de clonar un repositorio lleno queremos hacerlo vacío, hay que poner:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">git clone --bare https://github.com/exampleuser/old-repository.git
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7cc2950" class="outline-2">
+<h2 id="org7cc2950"><span class="section-number-2">8.</span> Estado del repositorio</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Podemos ver el estado del repositorio con la opción <code>log</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git log
+</pre>
+</div>
+
+<p>
+Que nos da toda esta información:
+</p>
+
+<ul class="org-ul">
+<li>La lista de cada <code>commit</code></li>
+<li>El <i>hash</i> <i>SHA1</i> del <i>commit</i>, una cadena única de cada <i>commit</i></li>
+<li>La autoría</li>
+<li>El mensaje que describía el cambio</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdd122d7" class="outline-2">
+<h2 id="orgdd122d7"><span class="section-number-2">9.</span> Información de cambios en el repositorio</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Si queremos ver los cambios en esta versión, debemos utilizar la opción <code>diff</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git diff
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaedcfa1" class="outline-2">
+<h2 id="orgaedcfa1"><span class="section-number-2">10.</span> Añadir y modificar documentos</h2>
+<div class="outline-text-2" id="text-10">
+</div>
+<div id="outline-container-orge931aa0" class="outline-3">
+<h3 id="orge931aa0"><span class="section-number-3">10.1.</span> Añadir</h3>
+<div class="outline-text-3" id="text-10-1">
+<div class="org-src-container">
+<pre class="src src-sh">git add ruta-nuevos-archivos
+git commit -m <span style="color: #CC9393;">"comentario sobre cambios"</span>
+git push -u origin rama
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb763eb2" class="outline-2">
+<h2 id="orgb763eb2"><span class="section-number-2">11.</span> Renombrar archivos o directorios</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-org13d5fcd" class="outline-4">
+<h4 id="org13d5fcd"><span class="section-number-4">11.0.1.</span> Renombrar un archivo</h4>
+<div class="outline-text-4" id="text-11-0-1">
+<div class="org-src-container">
+<pre class="src src-sh">git mv archivo1 archivo2
+git add archivo2
+git push -u origin master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge74d4f2" class="outline-4">
+<h4 id="orge74d4f2"><span class="section-number-4">11.0.2.</span> Renombrar un directorio</h4>
+<div class="outline-text-4" id="text-11-0-2">
+<div class="org-src-container">
+<pre class="src src-sh">git mv directorio1 directorio2
+git add directorio2
+git push -u origin master
+</pre>
+</div>
+
+<p>
+Ver los cambios que vamos a realizar con la opción <code>-n</code>, el atajo de <code>--dry-run</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git mv -n nombre_directorio_antiguo nombre_directorio_nuevo
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org17f3d62" class="outline-4">
+<h4 id="org17f3d62"><span class="section-number-4">11.0.3.</span> Case sensitive</h4>
+<div class="outline-text-4" id="text-11-0-3">
+<p>
+Renombrar en sistemas que no distinguen entre mayúsculas y minúsculas, puede dar un error cuando modifiquemos el nombre por caracteres en mayúsculas, por lo que tendríamos que hacer:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git mv directorio1 tempname &amp;&amp; git mv tempname Directorio2
+</pre>
+</div>
+
+<p>
+Si nuestro sistema no es <i>case sensitive</i>, puede ocurrir que queramos tener dos ficheros que se llaman igual, pero uno emplea mayúsculas y otro minúsculas, y git no nos lo deje incluir.
+</p>
+
+<p>
+Por ejemplo, si tenemos <code>TFM.html</code> y <code>tfm.html</code> en local, y añadimos a git uno de ellos, luego no podremos añadir el otro a no ser que configuremos nuestro git como <i>case sensitive</i>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git config core.ignorecase false
+</pre>
+</div>
+
+<p>
+Ahora ya podremos hacer <code>git add</code> con éxito.
+</p>
+
+<p>
+La solución viene de <a href="http://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git">Stackoverflow</a>
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-org1b8df8d" class="outline-4">
+<h4 id="org1b8df8d"><span class="section-number-4">11.0.4.</span> Borrar del repositorio</h4>
+<div class="outline-text-4" id="text-11-0-4">
+<p>
+Borrar un archivo del repositorio sin borrarlo del sistema de directorios local:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git rm --cached archivo.org
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgccbb307" class="outline-4">
+<h4 id="orgccbb307"><span class="section-number-4">11.0.5.</span> Borrar un directorio</h4>
+<div class="outline-text-4" id="text-11-0-5">
+<p>
+Para borrar un directorio:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git rm --cached -r directorio
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2244575" class="outline-2">
+<h2 id="org2244575"><span class="section-number-2">12.</span> Actualizar repositorio</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+Si queremos actualizar el repositorio con los cambios que se hayan producido en él, lo haremos con la opción <code>pull</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git pull
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge5d766d" class="outline-2">
+<h2 id="orge5d766d"><span class="section-number-2">13.</span> Deshacer cambios</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+Si realizamos un <code>commit</code> pero queremos volver atrás, si no hemos realizado push, es:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git reset --hard HEAD-1
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0cca90b" class="outline-2">
+<h2 id="org0cca90b"><span class="section-number-2">14.</span> Pull request</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+Haremos un <i>pull request</i> cuando queramos contribuir con nuestros cambios -mejoras, corrección de errores, actualizaciones- a un repositorio que ya existe.
+</p>
+
+<p>
+Por eso, lo primero que tenemos que hacer es crear una copia del proyecto:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git clone ruta-proyecto.git
+
+</pre>
+</div>
+
+<p>
+Luego creamos una rama donde hacer las modificaciones:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">
+git checkout -b nueva-rama
+
+</pre>
+</div>
+
+<p>
+Al crearla nos movemos a esa rama. Podemos comprobarlo si tenemos el asterisco en la rama deseada:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git branch
+</pre>
+</div>
+
+<p>
+Si no estamos ahí, vamos con:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git checkout nueva-rama
+</pre>
+</div>
+
+<p>
+Luego hacemos las modificaciones que sean a nuestros archivos, las añadimos, las comiteamos y las subimos a la rama creada:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git add ruta-nuevos-archivos
+git commit -m <span style="color: #CC9393;">"comentario sobre cambios"</span>
+git push -u origin nueva-rama
+</pre>
+</div>
+
+<p>
+Comprobamos el estado de git con <code>git status</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git status
+</pre>
+</div>
+
+<p>
+Si todo está bien, vamos a nuestra copia del proyecto en Github y en la página del repo pondrá que hay una rama sobre la que hacer un <i>pull-request</i>, pinchamos y seguimos los pasos.
+</p>
+
+<p>
+Si no hay discusión, si está todo bien, el administrador lo aprobará y entonces podremos borrar la rama. Nos movemos a master y desde ahí borramos en local y en el servidor:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git checkout master
+git branch -d nueva-rama
+git push origin --delete nueva-rama
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd640c04" class="outline-2">
+<h2 id="orgd640c04"><span class="section-number-2">15.</span> Borrar rama</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+En local:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git branch -d rama-local
+
+</pre>
+</div>
+
+<p>
+Si no se borra así, con <code>-D</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git branch -d rama-local
+
+</pre>
+</div>
+
+<p>
+En remoto::
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git push origin --delete rama-remota
+
+</pre>
+</div>
+
+<p>
+o también:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git push origin :ramaremota
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1130ff7" class="outline-2">
+<h2 id="org1130ff7"><span class="section-number-2">16.</span> Mantener un repositorio forkeado actualizado</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+Añades <code>remoteando</code> como servidor remoto:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git remote add remoteando git://ruta-repositorio.git
+</pre>
+</div>
+
+<p>
+Actualizas remoteando pero sin integrar los cambios
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git fetch upstream
+</pre>
+</div>
+
+<p>
+Integras los cambios con la versión local:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git pull upstream master
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb0a2d2" class="outline-2">
+<h2 id="orgdb0a2d2"><span class="section-number-2">17.</span> Publicación web</h2>
+<div class="outline-text-2" id="text-17">
+<p>
+Si el contenido del proyecto es HTML, podemos utilizar a GitHub como servidor web de nuestro contenido web, a través de la funcionalidad <a href="http://pages.github.com/">Pages</a>.
+</p>
+
+<p>
+Se puede hacer de dos maneras:
+</p>
+</div>
+
+<div id="outline-container-orgbc8ed12" class="outline-3">
+<h3 id="orgbc8ed12"><span class="section-number-3">17.1.</span> Nombre del repositorio</h3>
+<div class="outline-text-3" id="text-17-1">
+<p>
+Si el nombre del repositorio sigue la estructura "nombre-de-usuarix.github.io", el proyecto que cuelgue de ahí se publicará automágicamente en <a href="http://nombre-de-usuarix.github.io">http://nombre-de-usuarix.github.io</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org61e8e24" class="outline-3">
+<h3 id="org61e8e24"><span class="section-number-3">17.2.</span> Rama gh-pages</h3>
+<div class="outline-text-3" id="text-17-2">
+<p>
+Cualquier repositorio que tenga la rama <code>gh-pages</code> será publicado, y se verá su contenido web.
+</p>
+
+<p>
+Por ejemplo, si tenemos un repositorio con nombre <code>mi-proyecto</code> que contiene una web y queremos publicarlo como página web, solo tenemos que crear una nueva rama <code>branch</code> de nuestro proyecto que llamaremos <code>gh-pages</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git checkout -b gh-pages
+</pre>
+</div>
+
+<p>
+Luego ponemos ahí todo el contenido de la rama <code>master</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git merge master
+</pre>
+</div>
+
+<p>
+Por último subimos a GitHub todo lo que tenemos en la nueva rama:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git push -u origin gh-pages
+
+</pre>
+</div>
+
+<p>
+En unos minutos, GitHub lo habrá publicado en una URL del tipo <a href="http://nombre-de-usuarix.github.io/mi-proyecto">http://nombre-de-usuarix.github.io/mi-proyecto</a>
+</p>
+
+<p>
+Si tu repositorio es solo una web, puedes optar por utilizar solo la rama <code>gh-pages</code> en vez de mantener las dos ramas. Para ello tienes que elegir en GitHub qué rama utilizas.
+</p>
+
+<p>
+Si mantienes las dos, actualizar la web se puede convertir en algo tedioso si lo haces habitualmente.
+</p>
+
+<p>
+Para facilitar la tarea, <a href="http://brettterpstra.com/2012/09/26/github-tip-easily-sync-your-master-to-github-pages/">brettterpstra.com recomienda una solución</a>, puedes editar <code>.git/config</code> y añadir estas líneas a <code>[remote "origin"]</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">push = +refs/heads/master:refs/heads/gh-pages
+push = +refs/heads/master:refs/heads/master
+</pre>
+</div>
+
+<p>
+Quedando así:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">[remote <span style="color: #CC9393;">"origin"</span>]
+        fetch = +refs/heads/*:refs/remotes/origin/*
+        url = git@github.com:user/repo.git
+        push = +refs/heads/master:refs/heads/gh-pages
+        push = +refs/heads/master:refs/heads/master
+
+</pre>
+</div>
+
+<p>
+De esta manera, cuando hagas git push lo harás en los dos repos.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org91aae9f" class="outline-2">
+<h2 id="org91aae9f"><span class="section-number-2">18.</span> Gitignore</h2>
+<div class="outline-text-2" id="text-18">
+<p>
+<a href="https://git-scm.com/docs/gitignore">https://git-scm.com/docs/gitignore</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org5353da4" class="outline-2">
+<h2 id="org5353da4"><span class="section-number-2">19.</span> Problemas</h2>
+<div class="outline-text-2" id="text-19">
+</div>
+<div id="outline-container-org37d8e2e" class="outline-3">
+<h3 id="org37d8e2e"><span class="section-number-3">19.1.</span> 403 fatal: HTTP request failed</h3>
+<div class="outline-text-3" id="text-19-1">
+<p>
+<a href="http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed">http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git remote set-url origin https://yourusername@github.com/user/repo.git
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org71b5d9c" class="outline-3">
+<h3 id="org71b5d9c"><span class="section-number-3">19.2.</span> git: error: src refspec master does not match any</h3>
+<div class="outline-text-3" id="text-19-2">
+<p>
+<a href="http://stackoverflow.com/questions/10568641/git-error-src-refspec-master-does-not-match-any">http://stackoverflow.com/questions/10568641/git-error-src-refspec-master-does-not-match-any</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git remote rm origin
+git remote set-url origin git@....
+git push -u origin master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgca91f5e" class="outline-3">
+<h3 id="orgca91f5e"><span class="section-number-3">19.3.</span> Please, commit your changes or stash them before you can merge.</h3>
+<div class="outline-text-3" id="text-19-3">
+<p>
+Si alguien o tú mismo en otro equipo ha actualizado el repositorio
+mientras tú trabajabas y te sale este error, sin entrar en las
+opciones con las ramas, tienes <a href="http://stackoverflow.com/questions/15745045/how-do-i-resolve-git-saying-commit-your-changes-or-stash-them-before-you-can-me">tres opciones</a>:
+</p>
+</div>
+
+<div id="outline-container-orgf434f05" class="outline-4">
+<h4 id="orgf434f05"><span class="section-number-4">19.3.1.</span> Comitear el cambio de la forma típica:</h4>
+<div class="outline-text-4" id="text-19-3-1">
+<div class="org-src-container">
+<pre class="src src-sh">git commit -m <span style="color: #CC9393;">"comentario"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org48f647d" class="outline-4">
+<h4 id="org48f647d"><span class="section-number-4">19.3.2.</span> Reservarlo o depositarlo en una pila o <i>stack</i> con <code>stash</code>:</h4>
+<div class="outline-text-4" id="text-19-3-2">
+<div class="org-src-container">
+<pre class="src src-sh">git stash
+
+</pre>
+</div>
+
+<p>
+Ahí puedes hacer <code>push</code> y aparece en orden inverso:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git stash pop
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf569ed8" class="outline-4">
+<h4 id="orgf569ed8"><span class="section-number-4">19.3.3.</span> Descartar los cambios que has hecho</h4>
+<div class="outline-text-4" id="text-19-3-3">
+<div class="org-src-container">
+<pre class="src src-sh">git reset --hard
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org49c9f5b" class="outline-3">
+<h3 id="org49c9f5b"><span class="section-number-3">19.4.</span> Github fatal remote origin already exists</h3>
+<div class="outline-text-3" id="text-19-4">
+<p>
+Versión corta de la solución: actualiza irotisoper le:otomer o
+</p>
+
+
+<p>
+TL;DR you should just update the existing remote:
+</p>
+
+<p>
+$ git remote set-url origin git@github.com:ppreyer/first<sub>app.git</sub>
+</p>
+
+<p>
+Long version:
+</p>
+
+<p>
+As the error message indicates, there is already a remote configured with the same name. So you can either add the new remote with a different name or update the existing one if you don't need it:
+</p>
+
+<p>
+To add a new remote, called for example github instead of origin (which obviously already exists in your system), do the following:
+</p>
+
+<p>
+$ git remote add github git@github.com:ppreyer/first<sub>app.git</sub>
+</p>
+
+<p>
+Remember though, everywhere in the tutorial you see "origin" you should replace it with "github". For example $ git push origin master should now be $ git push github master.
+</p>
+
+<p>
+However, if you want to see what that origin which already exists is, you can do a $ git remote -v. If you think this is there by some error, you can update it like so:
+</p>
+
+<p>
+$ git remote set-url origin git@github.com:ppreyer/first<sub>app.git</sub>
+</p>
+
+<p>
+<a href="http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-exists">http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-exists</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org740a425" class="outline-2">
+<h2 id="org740a425"><span class="section-number-2">20.</span> Pruebas</h2>
+<div class="outline-text-2" id="text-20">
+<p>
+<a href="https://try.github.io/levels/1/challenges/1">Try Git</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org06e6624" class="outline-2">
+<h2 id="org06e6624"><span class="section-number-2">21.</span> Bibliografía</h2>
+<div class="outline-text-2" id="text-21">
+</div>
+<div id="outline-container-org4c47842" class="outline-3">
+<h3 id="org4c47842"><span class="section-number-3">21.1.</span> Algunos recursos</h3>
+<div class="outline-text-3" id="text-21-1">
+<ul class="org-ul">
+<li><a href="https://git-scm.com/book/es">Git, distributed is the new centralized</a></li>
+<li><a href="http://alistapart.com/article/get-started-with-git">http://alistapart.com/article/get-started-with-git</a></li>
+<li><a href="http://progit.org/book/ch1-4.html">http://progit.org/book/ch1-4.html</a></li>
+<li><a href="http://ferblape.github.io/github.com-medialab-desigualdad">Qué es y cómo publicar nuestros proyectos en Github</a></li>
+<li><a href="http://rooteando.com/escenarios-de-trabajo-en-git/">Escenario de trabajo en git</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org97a5281" class="outline-3">
+<h3 id="org97a5281"><span class="section-number-3">21.2.</span> Git Github Course</h3>
+<div class="outline-text-3" id="text-21-2">
+</div>
+</div>
+
+<div id="outline-container-org6345ee2" class="outline-3">
+<h3 id="org6345ee2"><span class="section-number-3">21.3.</span> Cheatsheets</h3>
+<div class="outline-text-3" id="text-21-3">
+<ul class="org-ul">
+<li><a href="http://overapi.com/static/cs/git-cheat-sheet.pdf">git cheat sheet</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2015-12-16 Wed 16:00</p>
+<p class="author">Author: Adolfo Antón Bravo</p>
+<p class="date">Created: 2021-11-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
