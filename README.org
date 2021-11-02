@@ -1,21 +1,29 @@
-#+CATEGORY: curro, villanueva, periodismodatos
-#+TAGS: git, github, proyectos, tld
+# -*- mode: org -*-
+# -*- coding: utf-8 -*-
+#+STARTUP: hidestars overview noindent inlineimages logdrawer shrink
+#+OPTIONS:   H:1 num:t toc:t \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t date:nil
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+OPTIONS: author:nil email:nil creator:nil timestamp:nil
+#+CATEGORY: softwarelibre, periodismodatos
+#+TAGS: git, github, gitlab, bitbucket, repositorio
 #+DESCRIPTION: Git, Github y publicación web
+#+latex_header: \renewcommand{\contentsname}{Prueba}
+#+EXPORT_FILE_NAME: index
+#+language:  es
 #+AUTHOR: Adolfo Antón Bravo
 #+EMAIL: adolflow@infotics.es
 #+TITLE: Git, GitHub y Publicación Web
 #+DATE: <2015-12-16 mié 16:00>
 #+SETUPFILE: https://raw.githubusercontent.com/fniessen/org-html-themes/master/org/theme-readtheorg.setup
-#+EXPORT_FILE_NAME: index
 
-Módulo de periodismo de datos de /github/ donde aprenderemos cosas directamente relacionadas:
+Notas sobre git y Github:
 
 - git
+- github
 - gestión de proyectos
 - crear copias de proyectos
 - adaptar proyectos
 - participar en proyectos.
-
 
 Puedes trabajar con git desde herramientas gráficas o desde la línea de comandos.
 
@@ -47,14 +55,92 @@ También tenemos los instaladores oficiales de [[http://www.git-scm.com][git]]:
 - Windows, http://www.git-scm.com/download/win
 
 * GitHub
-
+  
 Crea una [[http://www.github.com][cuenta en GitHub]]
 
 Si no te atreviste con el paso anterior, puedes usar estos programas de escritorio para Windows y Mac:
 
 - Windows: http://windows.github.com y [[https://help.github.com/articles/set-up-git/#platform-windows][primeros pasos]]
 - Mac OS X: http://mac.github.com y [[https://help.github.com/articles/set-up-git/#platform-mac][primeros pasos]]
+** Wiki
+En GitHub se puede añadir el wiki como un submódulo, tal como recuerdan [[https://stackoverflow.com/questions/6941688/how-to-integrate-a-github-wiki-into-the-main-project][aquí]]:
 
+#+BEGIN_SRC bash
+git submodule add git://github.com/you/proj.wiki
+#+END_SRC
+
+Que podríamos enlazar con nuestro directorio preferido:
+
+#+BEGIN_SRC bash
+git submodule add git://github.com/you/proj.wiki vocabulary
+#+END_SRC
+
+Ahí debería haber al menos dos archivos:
+- =Home.md=, donde estaría la información de portada del wiki.
+- =_Sidebar-vocabulary.md=, el menú de la derecha del wiki.
+- =_Footer.md=, información al pie.
+
+*** Qué son los submódulos
+    :PROPERTIES:
+    :url:      https://git-scm.com/book/en/v2/Git-Tools-Submodules
+    :END:
+Como su propio nombre indica, son parte de un repositorio git. A efectos prácticos, funcionan como un
+subrepositorio, un repositorio dentro de un repositorio.
+
+Para qué se pueden utilizar:
+- Se pueden utilizar para separar código en submódulos.
+- Pueden ser parte de más de un repositorio, por lo que pueden compartirse con otros proyectos/repositorios,
+  de tal forma que cuando se actualice ese submódulo se actualizará en todos los repositorios donde está como
+  submódulo.
+**** Funcionamiento
+     :PROPERTIES:
+     :cite:     https://gist.github.com/gitaarik/8735255
+     :END:
+Cuando añades un submódulo a un repo, añades el código al repo y queda registrada la información que describe
+a qué commit está apuntando el submódulo. El archivo =.gitmodules= almacena la versión del submódulo cuando es
+añadido.
+**** Añadir un submódulo
+Se añade un submódulo de la siguiente manera:
+
+#+begin_source Bash
+git submodule add git@github.com:url_a/mi-submodulo.git ruta-donde-quiero-el-submodulo
+#+end_source
+
+De esta manera se pasa el código y se añade información al repositorio principal sobre el submódulo, lo que
+contiene el commit a donde apunta el submódulo, que será el commit de la rama por defecto.
+**** Obtener el código
+Si se crea el submódulo, las otras personas tienen que inicializar el submódulo. Primero obtienes la
+información con =git fech= o bien descargamos información y código con =git pull= y después se inicializan con =git submodule init=.
+
+Si se clona un repositorio con submódulos, también se tiene que correr este comando para obtener el código del
+submódulo ya que no lo hace automáticamente con =git clone=.
+**** Actualizaciones del submódulo
+
+Si actualizamos el submódulo, dado que es un repositorio separado, también tendremos que actualizar el repo
+principal ya que su último commit apunta al anterior. Para actualizar, desde el repo principal, =git add=,
+=git commit= y =git push=.
+**** Mantener actualizados los submódulos
+
+Si otras personas hicieron cambio en el submódulo, hay que actualizar el código con =git submodule update --remote=.
+**** Truco
+
+Si lanzamos =git submodule update --init=, inicializamos los submódulos.
+
+En *caso* de /tener/ submódulos dentro de submódulos, añadimos =--recursive= al final de la sentencia.
+
+Recuerda que se pueden hacer =alias= en =git=, por lo que podríamos crear uno tal que así:
+
+#+begin_src
+git config --global alias.update '!git pull && git submodule update --init --recursive'
+#+END_SRC
+
+De tal forma que con =git update= inicializaríamos correctamente el repositorio y el/los submódulo(s).
+
+**** Gestión de submódulos
+     :PROPERTIES:
+     :cite:     https://github.com/exlinc/mdlr
+     :END:
+=mdlr= se declara como una herramienta de git para gestionar submódulos fácilmente.
 
 * Llave SSH
 
@@ -145,7 +231,7 @@ RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
 Are you sure you want to continue connecting (yes/no)?
 #+END_EXAMPLE
 
-Nótese que 192.30.252.1 es una de las direcciones IP de GitHub, pero podría salir otra. Lo más importante es fijarse en el fingerprint.
+Nótese que =192.30.252.1= es una de las direcciones IP de GitHub, pero podría salir otra. Lo más importante es fijarse en el fingerprint.
 
 Le decimos que sí y entonces GitHub nos responde:
 
@@ -178,6 +264,35 @@ export EDITOR=$VISUAL
 * Configuración
 
 La primera vez que usas Git te pedirá tu nombre de usuarix y dirección de correo. Lo podemos agregar con el comando =config=.
+
+Tal como comenta [[https://stackoverflow.com/a/16682441][sarigalin]] hay tres niveles de configuración de =git=, de más específico a más general, siendo
+la más específica la que sobreescribe la más general.
+
+- =project=, configuración de proyecto, solo disponible para el actual proyecto. Se almacena en =.git/config=
+  en el directorio del proyecto.
+- =global=, configuración global para todos los proyectos del usuario del sistema. Se almacena en =~/.gitconfig=.
+- =system=, configuración para el sistema, para todas las cuentas del sistema.
+
+Por tanto, si queremos tener una configuración para el sistema, escribiremos:
+
+#+begin_example
+git config --system user.name "Fulanito de Tal"
+#+end_example
+
+Si queremos que sea global para nuestra cuenta:
+
+#+begin_example
+git config --global user.name "Fulanito de Tal"
+#+end_example
+
+Y si queremos que sea especifica del repositorio, que es la configuración por defecto, no hay que añadir
+=--project= como en los otros dos casos.
+
+#+begin_example
+git config  user.name "Fulanito de Tal"
+#+end_example
+
+** Configuración global
 
 Añado el nombre de la cuenta, en este caso el nombre de usuarix en GitHub:
 
@@ -235,10 +350,10 @@ No marques la opción /Initialize with README/ y tampoco le asignes licencia, va
 Conectamos el directorio local donde nos encontramos con GitHub de la siguiente manera:
 
 #+BEGIN_SRC sh
-git remote add origin https://github.com/tu_nombre_usuarix/primera-newsapp.git
+git remote add origin https://github.com/cuenta/nombre-repositorio
  #+END_SRC
 
-Donde le decimos a =git= que añadimos un =.git= remoto en la URL de GitHub.
+Donde le decimos a =git= que añadimos un =git= remoto en la URL de GitHub.
 
 Hemos de crear al menos un archivo README.md donde puedes poner la información del proyecto:
 
@@ -273,7 +388,7 @@ echo "# Proyecto de ..." >> README.md
 git init
 git add README.md
 git commit -m "primer commit"
-git remote add origin https://github.com/tu_usuarix/nombre_proyecto.git
+git remote add origin https://github.com/cuenta/nombre-repositorio
 git push -u origin master
 #+END_SRC
 
@@ -298,8 +413,6 @@ rm -rf .git
 #+END_SRC
 
 Si en este caso podríamos saber el /status/ de git, el mensaje nos avisaría diciendo que no se trata de un repositorio git.
-
-
 
 * Clonar un repositorio
 
@@ -427,6 +540,19 @@ Si realizamos un =commit= pero queremos volver atrás, si no hemos realizado pus
 git reset --hard HEAD-1
 
 #+END_SRC
+
+Si hemos realizado el =commit= lo mejor es hacer [[http://schacon.github.io/git/git-revert.html][revert]], tal como explican 
+
+
+#+begin_example
+git revert <hash-or-ref>
+#+end_example
+
+Para saber el =hash-or-ref= se puede consultar la parte de Commits de la página del repo o
+bien con el comando ~git log --pretty=online~.
+
+Luego hacemos ~git push~ para actualizar el repositorio con el cambio revertido.
+
 * Pull request
 
 Haremos un /pull request/ cuando queramos contribuir con nuestros cambios -mejoras, corrección de errores, actualizaciones- a un repositorio que ya existe.
@@ -516,6 +642,7 @@ Añades =remoteando= como servidor remoto:
 
 #+BEGIN_SRC sh
 git remote add remoteando git://ruta-repositorio.git
+git remote add remoteando https://github.com/cuenta/nombre-repositorio.git
 #+END_SRC
 
 Actualizas remoteando pero sin integrar los cambios
@@ -588,8 +715,6 @@ Quedando así:
 #+END_SRC
 
 De esta manera, cuando hagas git push lo harás en los dos repos.
-
-
 * Gitignore
 https://git-scm.com/docs/gitignore
 * Problemas
@@ -638,10 +763,9 @@ git reset --hard
 
 #+END_SRC
 
-** Github fatal remote origin already exists
+** Github fatal remote origin already exists                       :noexport:
 
 Versión corta de la solución: actualiza irotisoper le:otomer o
-
 
 TL;DR you should just update the existing remote:
 
@@ -662,6 +786,36 @@ However, if you want to see what that origin which already exists is, you can do
 $ git remote set-url origin git@github.com:ppreyer/first_app.git
 
 http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-exists
+
+Encuentro respuesta en [[http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-exists][stackoverflow]].
+
+Versión corta de la solución: actualiza el repositorio remoto:
+
+#+begin_src bash
+git remote set-url origin https://github.com/cuenta/nombre-repositorio
+
+#+end_src
+
+Versión larga: tal como indica el error, ya hay un =remote= configurado con el mismo nombre por lo que puedes
+añadir un nuevo =remoto= con otro nombre o actualizar el existente si no lo necesitas.
+
+Para añadir un nuevo =remoto= vale el ejemplo de la versión corta y en vez de =origin= llámalo como quieras:
+
+#+begin_src bash
+git remote set-url como-quieras https://github.com/cuenta/nombre-repositorio
+#+end_src
+
+Y entonces podrías actualizarlo con:
+
+#+begin_src bash
+git push como-quieras master https://github.com/cuenta/nombre-repositorio
+#+end_src
+
+#+begin_notes
+Recuerda que puedes ver los =remote= que tienes con ~git remote -v~
+#+end_notes
+
+
 * Pruebas
 [[https://try.github.io/levels/1/challenges/1][Try Git]]
 * Bibliografía
@@ -669,8 +823,10 @@ http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-e
 - [[https://git-scm.com/book/es][Git, distributed is the new centralized]]
 - http://alistapart.com/article/get-started-with-git
 - http://progit.org/book/ch1-4.html
+- Mastering markdown, guía de Github https://guides.github.com/features/mastering-markdown/
 - [[http://ferblape.github.io/github.com-medialab-desigualdad][Qué es y cómo publicar nuestros proyectos en Github]]
 - [[http://rooteando.com/escenarios-de-trabajo-en-git/][Escenario de trabajo en git]]
+
 ** Git Github Course
    :PROPERTIES:
    :url:      https://github.com/OxfordRSE/git-github-course
@@ -678,3 +834,7 @@ http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-e
 
 ** Cheatsheets
 - [[http://overapi.com/static/cs/git-cheat-sheet.pdf][git cheat sheet]]
+=======
+** Cheatsheets
+- [[http://overapi.com/static/cs/git-cheat-sheet.pdf][Git cheat sheet]]
+

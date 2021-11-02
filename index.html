@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2021-11-02 Tue 14:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git, GitHub y Publicación Web</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Adolfo Antón Bravo" />
 <meta name="description" content="Git, Github y publicación web"
  />
 <style type="text/css">
@@ -228,113 +226,45 @@
 <div id="content">
 <h1 class="title">Git, GitHub y Publicación Web</h1>
 <div id="table-of-contents">
-<h2>Table of Contents</h2>
+<h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8730bf9">1. Instalación de git</a></li>
-<li><a href="#org86595dc">2. GitHub</a></li>
-<li><a href="#org7d83474">3. Llave SSH</a>
-<ul>
-<li><a href="#org096fe54">3.1. Comprobación de claves</a></li>
-<li><a href="#org2a2efb7">3.2. Generar claves ssh</a>
-<ul>
-<li><a href="#orge520b76">3.2.1. Copia de clave con método <code>pbcopy</code></a></li>
-<li><a href="#org9933683">3.2.2. Copia de clave con <code>more</code> y copiar y pegar</a></li>
-</ul>
-</li>
-<li><a href="#org840b8ec">3.3. Configuración local y comprobación</a></li>
-</ul>
-</li>
-<li><a href="#orgf73b38f">4. Cambiar el editor por defecto</a>
-<ul>
-<li><a href="#orgb2dc9de">4.1. core.editor</a></li>
-<li><a href="#org0494cd5">4.2. nano como editor por defecto</a></li>
-</ul>
-</li>
-<li><a href="#orge40460f">5. Configuración</a></li>
-<li><a href="#orge920830">6. Crear un repositorio</a>
-<ul>
-<li><a href="#orgc97199a">6.1. Opción GitHub al final</a>
-<ul>
-<li><a href="#org02da653">6.1.1. Nuevo repositorio en directorio nuevo</a></li>
-<li><a href="#orge3bef39">6.1.2. Nuevo repositorio en directorio existente</a></li>
-<li><a href="#org0b1cf0d">6.1.3. Pasarlo a GitHub</a></li>
-</ul>
-</li>
-<li><a href="#orgb101873">6.2. Opción GitHub</a></li>
-<li><a href="#org6db4ea4">6.3. Comprobaciones</a></li>
-</ul>
-</li>
-<li><a href="#org3e47b55">7. Clonar un repositorio</a></li>
-<li><a href="#org7cc2950">8. Estado del repositorio</a></li>
-<li><a href="#orgdd122d7">9. Información de cambios en el repositorio</a></li>
-<li><a href="#orgaedcfa1">10. Añadir y modificar documentos</a>
-<ul>
-<li><a href="#orge931aa0">10.1. Añadir</a></li>
-</ul>
-</li>
-<li><a href="#orgb763eb2">11. Renombrar archivos o directorios</a>
-<ul>
-<li>
-<ul>
-<li><a href="#org13d5fcd">11.0.1. Renombrar un archivo</a></li>
-<li><a href="#orge74d4f2">11.0.2. Renombrar un directorio</a></li>
-<li><a href="#org17f3d62">11.0.3. Case sensitive</a></li>
-<li><a href="#org1b8df8d">11.0.4. Borrar del repositorio</a></li>
-<li><a href="#orgccbb307">11.0.5. Borrar un directorio</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org2244575">12. Actualizar repositorio</a></li>
-<li><a href="#orge5d766d">13. Deshacer cambios</a></li>
-<li><a href="#org0cca90b">14. Pull request</a></li>
-<li><a href="#orgd640c04">15. Borrar rama</a></li>
-<li><a href="#org1130ff7">16. Mantener un repositorio forkeado actualizado</a></li>
-<li><a href="#orgdb0a2d2">17. Publicación web</a>
-<ul>
-<li><a href="#orgbc8ed12">17.1. Nombre del repositorio</a></li>
-<li><a href="#org61e8e24">17.2. Rama gh-pages</a></li>
-</ul>
-</li>
-<li><a href="#org91aae9f">18. Gitignore</a></li>
-<li><a href="#org5353da4">19. Problemas</a>
-<ul>
-<li><a href="#org37d8e2e">19.1. 403 fatal: HTTP request failed</a></li>
-<li><a href="#org71b5d9c">19.2. git: error: src refspec master does not match any</a></li>
-<li><a href="#orgca91f5e">19.3. Please, commit your changes or stash them before you can merge.</a>
-<ul>
-<li><a href="#orgf434f05">19.3.1. Comitear el cambio de la forma típica:</a></li>
-<li><a href="#org48f647d">19.3.2. Reservarlo o depositarlo en una pila o <i>stack</i> con <code>stash</code>:</a></li>
-<li><a href="#orgf569ed8">19.3.3. Descartar los cambios que has hecho</a></li>
-</ul>
-</li>
-<li><a href="#org49c9f5b">19.4. Github fatal remote origin already exists</a></li>
-</ul>
-</li>
-<li><a href="#org740a425">20. Pruebas</a></li>
-<li><a href="#org06e6624">21. Bibliografía</a>
-<ul>
-<li><a href="#org4c47842">21.1. Algunos recursos</a></li>
-<li><a href="#org97a5281">21.2. Git Github Course</a></li>
-<li><a href="#org6345ee2">21.3. Cheatsheets</a></li>
-</ul>
-</li>
+<li><a href="#org508c3f3">1. Instalación de git</a></li>
+<li><a href="#orgc3e92c8">2. GitHub</a></li>
+<li><a href="#org9489e8b">3. Llave SSH</a></li>
+<li><a href="#org7433c53">4. Cambiar el editor por defecto</a></li>
+<li><a href="#org625ba9b">5. Configuración</a></li>
+<li><a href="#org3dd68ea">6. Crear un repositorio</a></li>
+<li><a href="#org5b6cf29">7. Clonar un repositorio</a></li>
+<li><a href="#orgcd01c18">8. Estado del repositorio</a></li>
+<li><a href="#org5077cde">9. Información de cambios en el repositorio</a></li>
+<li><a href="#orga3ce973">10. Añadir y modificar documentos</a></li>
+<li><a href="#orgd9d4982">11. Renombrar archivos o directorios</a></li>
+<li><a href="#orgc4d2c0f">12. Actualizar repositorio</a></li>
+<li><a href="#org1c46805">13. Deshacer cambios</a></li>
+<li><a href="#orga6e5dd9">14. Pull request</a></li>
+<li><a href="#org1c98b67">15. Borrar rama</a></li>
+<li><a href="#org36dc781">16. Mantener un repositorio forkeado actualizado</a></li>
+<li><a href="#org0442e16">17. Publicación web</a></li>
+<li><a href="#orgcd67658">18. Gitignore</a></li>
+<li><a href="#orgc712835">19. Problemas</a></li>
+<li><a href="#org022b5bd">20. Pruebas</a></li>
+<li><a href="#org4c9b95c">21. Bibliografía</a></li>
 </ul>
 </div>
 </div>
 <p>
-Módulo de periodismo de datos de <i>github</i> donde aprenderemos cosas directamente relacionadas:
+Notas sobre git y Github:
 </p>
 
 <ul class="org-ul">
 <li>git</li>
+<li>github</li>
 <li>gestión de proyectos</li>
 <li>crear copias de proyectos</li>
 <li>adaptar proyectos</li>
 <li>participar en proyectos.</li>
 </ul>
-
 
 <p>
 Puedes trabajar con git desde herramientas gráficas o desde la línea de comandos.
@@ -345,8 +275,8 @@ En este caso vamos a trabajar con la línea de comandos, preferiblemente en GNU/
 </p>
 
 
-<div id="outline-container-org8730bf9" class="outline-2">
-<h2 id="org8730bf9"><span class="section-number-2">1.</span> Instalación de git</h2>
+<div id="outline-container-org508c3f3" class="outline-2">
+<h2 id="org508c3f3"><span class="section-number-2">1.</span> Instalación de git</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 En GNU/Linux, tan solo hay que instalar <code>git-core</code>:
@@ -389,8 +319,8 @@ También tenemos los instaladores oficiales de <a href="http://www.git-scm.com">
 </div>
 </div>
 
-<div id="outline-container-org86595dc" class="outline-2">
-<h2 id="org86595dc"><span class="section-number-2">2.</span> GitHub</h2>
+<div id="outline-container-orgc3e92c8" class="outline-2">
+<h2 id="orgc3e92c8"><span class="section-number-2">2.</span> GitHub</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Crea una <a href="http://www.github.com">cuenta en GitHub</a>
@@ -405,11 +335,153 @@ Si no te atreviste con el paso anterior, puedes usar estos programas de escritor
 <li>Mac OS X: <a href="http://mac.github.com">http://mac.github.com</a> y <a href="https://help.github.com/articles/set-up-git/#platform-mac">primeros pasos</a></li>
 </ul>
 </div>
+<ol class="org-ol">
+<li><a id="org16e9b7f"></a>Wiki<br />
+<div class="outline-text-3" id="text-2-1">
+<p>
+En GitHub se puede añadir el wiki como un submódulo, tal como recuerdan <a href="https://stackoverflow.com/questions/6941688/how-to-integrate-a-github-wiki-into-the-main-project">aquí</a>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">git submodule add git://github.com/you/proj.wiki
+</pre>
 </div>
 
+<p>
+Que podríamos enlazar con nuestro directorio preferido:
+</p>
 
-<div id="outline-container-org7d83474" class="outline-2">
-<h2 id="org7d83474"><span class="section-number-2">3.</span> Llave SSH</h2>
+<div class="org-src-container">
+<pre class="src src-bash">git submodule add git://github.com/you/proj.wiki vocabulary
+</pre>
+</div>
+
+<p>
+Ahí debería haber al menos dos archivos:
+</p>
+<ul class="org-ul">
+<li><code>Home.md</code>, donde estaría la información de portada del wiki.</li>
+<li><code>_Sidebar-vocabulary.md</code>, el menú de la derecha del wiki.</li>
+<li><code>_Footer.md</code>, información al pie.</li>
+</ul>
+</div>
+
+<ol class="org-ol">
+<li><a id="org365637e"></a>Qué son los submódulos<br />
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+Como su propio nombre indica, son parte de un repositorio git. A efectos prácticos, funcionan como un
+subrepositorio, un repositorio dentro de un repositorio.
+</p>
+
+<p>
+Para qué se pueden utilizar:
+</p>
+<ul class="org-ul">
+<li>Se pueden utilizar para separar código en submódulos.</li>
+<li>Pueden ser parte de más de un repositorio, por lo que pueden compartirse con otros proyectos/repositorios,
+de tal forma que cuando se actualice ese submódulo se actualizará en todos los repositorios donde está como
+submódulo.</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="orgec91113"></a>Funcionamiento<br />
+<div class="outline-text-5" id="text-2-1-1-1">
+<p>
+Cuando añades un submódulo a un repo, añades el código al repo y queda registrada la información que describe
+a qué commit está apuntando el submódulo. El archivo <code>.gitmodules</code> almacena la versión del submódulo cuando es
+añadido.
+</p>
+</div>
+</li>
+<li><a id="org833b7a3"></a>Añadir un submódulo<br />
+<div class="outline-text-5" id="text-2-1-1-2">
+<p>
+Se añade un submódulo de la siguiente manera:
+</p>
+
+<div class="source" id="org2b6d85d">
+<p>
+git submodule add git@github.com:url_a/mi-submodulo.git ruta-donde-quiero-el-submodulo
+</p>
+
+</div>
+
+<p>
+De esta manera se pasa el código y se añade información al repositorio principal sobre el submódulo, lo que
+contiene el commit a donde apunta el submódulo, que será el commit de la rama por defecto.
+</p>
+</div>
+</li>
+<li><a id="org2a3e5ce"></a>Obtener el código<br />
+<div class="outline-text-5" id="text-2-1-1-3">
+<p>
+Si se crea el submódulo, las otras personas tienen que inicializar el submódulo. Primero obtienes la
+información con <code>git fech</code> o bien descargamos información y código con <code>git pull</code> y después se inicializan con <code>git submodule init</code>.
+</p>
+
+<p>
+Si se clona un repositorio con submódulos, también se tiene que correr este comando para obtener el código del
+submódulo ya que no lo hace automáticamente con <code>git clone</code>.
+</p>
+</div>
+</li>
+<li><a id="org40ef1dc"></a>Actualizaciones del submódulo<br />
+<div class="outline-text-5" id="text-2-1-1-4">
+<p>
+Si actualizamos el submódulo, dado que es un repositorio separado, también tendremos que actualizar el repo
+principal ya que su último commit apunta al anterior. Para actualizar, desde el repo principal, <code>git add</code>,
+<code>git commit</code> y <code>git push</code>.
+</p>
+</div>
+</li>
+<li><a id="org1273570"></a>Mantener actualizados los submódulos<br />
+<div class="outline-text-5" id="text-2-1-1-5">
+<p>
+Si otras personas hicieron cambio en el submódulo, hay que actualizar el código con <code>git submodule update --remote</code>.
+</p>
+</div>
+</li>
+<li><a id="org0099638"></a>Truco<br />
+<div class="outline-text-5" id="text-2-1-1-6">
+<p>
+Si lanzamos <code>git submodule update --init</code>, inicializamos los submódulos.
+</p>
+
+<p>
+En <b>caso</b> de <i>tener</i> submódulos dentro de submódulos, añadimos <code>--recursive</code> al final de la sentencia.
+</p>
+
+<p>
+Recuerda que se pueden hacer <code>alias</code> en <code>git</code>, por lo que podríamos crear uno tal que así:
+</p>
+
+<pre class="example">
+git config --global alias.update '!git pull &amp;&amp; git submodule update --init --recursive'
+</pre>
+
+<p>
+De tal forma que con <code>git update</code> inicializaríamos correctamente el repositorio y el/los submódulo(s).
+</p>
+</div>
+</li>
+
+<li><a id="org82a14ef"></a>Gestión de submódulos<br />
+<div class="outline-text-5" id="text-2-1-1-7">
+<p>
+<code>mdlr</code> se declara como una herramienta de git para gestionar submódulos fácilmente.
+</p>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org9489e8b" class="outline-2">
+<h2 id="org9489e8b"><span class="section-number-2">3.</span> Llave SSH</h2>
 <div class="outline-text-2" id="text-3">
 <blockquote>
 <p>
@@ -430,8 +502,8 @@ Puedes conectarte por ssh y activar la llave ssh para conectarte de forma autent
 </p>
 </div>
 
-<div id="outline-container-org096fe54" class="outline-3">
-<h3 id="org096fe54"><span class="section-number-3">3.1.</span> Comprobación de claves</h3>
+<ol class="org-ol">
+<li><a id="orgb33b5b7"></a>Comprobación de claves<br />
 <div class="outline-text-3" id="text-3-1">
 <p>
 Primero comprobamos que contamos con clave ssh en el equipo:
@@ -446,10 +518,9 @@ Primero comprobamos que contamos con clave ssh en el equipo:
 Si aparece un listado de claves, podremos saltarnos el siguiente paso. Si no, debemos generar unas claves.
 </p>
 </div>
-</div>
+</li>
 
-<div id="outline-container-org2a2efb7" class="outline-3">
-<h3 id="org2a2efb7"><span class="section-number-3">3.2.</span> Generar claves ssh</h3>
+<li><a id="orgc9ff6d9"></a>Generar claves ssh<br />
 <div class="outline-text-3" id="text-3-2">
 <p>
 Necesitas generar una clave ssh el equipo local desde el que te conectas:
@@ -468,7 +539,7 @@ Lo cual crea una nueva clave ssh y utiliza el correo electrónico como etiqueta.
 Si todo va bien, mostrará el mensaje de generación de la clave, pedirá dónde almacenarla y se puede añadir una contraseña:
 </p>
 
-<pre class="example" id="orge3d6f51">
+<pre class="example" id="org2b1de0f">
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/usuarix/.ssh/id_rsa): 
 Enter passphrase (empty for no passphrase): 
@@ -488,8 +559,8 @@ Ahora que ya tenemos la clave, la pegamos en GitHub en las preferencias, en el a
 </p>
 </div>
 
-<div id="outline-container-orge520b76" class="outline-4">
-<h4 id="orge520b76"><span class="section-number-4">3.2.1.</span> Copia de clave con método <code>pbcopy</code></h4>
+<ol class="org-ol">
+<li><a id="org9ea39c5"></a>Copia de clave con método <code>pbcopy</code><br />
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 Para seleccionar la clave, podemos emplear el método MacOSX <code>pbcopy</code>, que podemos hackear en GNU/Linux con un <i>alias</i> a partir de <code>xsel</code>:
@@ -514,10 +585,9 @@ De esta forma ya podemos utilizar <code>pbcopy</code>:
 Y pegamos en GitHub. A partir de ahí ya podremos conectarnos con GitHub de forma segura.
 </p>
 </div>
-</div>
+</li>
 
-<div id="outline-container-org9933683" class="outline-4">
-<h4 id="org9933683"><span class="section-number-4">3.2.2.</span> Copia de clave con <code>more</code> y copiar y pegar</h4>
+<li><a id="orge812be7"></a>Copia de clave con <code>more</code> y copiar y pegar<br />
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 Podemos hacerlo en dos pasos, mostrando la clave y copiándola con el ratón:
@@ -528,11 +598,11 @@ Podemos hacerlo en dos pasos, mostrando la clave y copiándola con el ratón:
 </pre>
 </div>
 </div>
-</div>
-</div>
+</li>
+</ol>
+</li>
 
-<div id="outline-container-org840b8ec" class="outline-3">
-<h3 id="org840b8ec"><span class="section-number-3">3.3.</span> Configuración local y comprobación</h3>
+<li><a id="orgcea4346"></a>Configuración local y comprobación<br />
 <div class="outline-text-3" id="text-3-3">
 <p>
 Ya está casi todo hecho. Ahora falta decirle a git que nos conectamos a GitHub de forma segura. Para ello, podemos comprobar que lo podemos hacer, y en el mismo paso aprobar la conexión:
@@ -547,21 +617,21 @@ Ya está casi todo hecho. Ahora falta decirle a git que nos conectamos a GitHub 
 Nos pedirá la contraseña que hayamos puesto a la clave si lo hemos hecho, lo introducimos y listo. Si no, nos saldrá directamente el mensaje:
 </p>
 
-<pre class="example" id="org1181a23">
+<pre class="example" id="org1ba8443">
 The authenticity of host 'github.com (192.30.252.1)' can't be established.
 RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
 Are you sure you want to continue connecting (yes/no)?
 </pre>
 
 <p>
-Nótese que 192.30.252.1 es una de las direcciones IP de GitHub, pero podría salir otra. Lo más importante es fijarse en el fingerprint.
+Nótese que <code>192.30.252.1</code> es una de las direcciones IP de GitHub, pero podría salir otra. Lo más importante es fijarse en el fingerprint.
 </p>
 
 <p>
 Le decimos que sí y entonces GitHub nos responde:
 </p>
 
-<pre class="example" id="org161e072">
+<pre class="example" id="org0f36b32">
 Hi usuarix! You've successfully authenticated, but GitHub does not provide shell access.
 </pre>
 
@@ -573,24 +643,25 @@ Donde <code>usuarix</code> es nuestrx usuarix en GitHub. Ya está hecho.
 Si nos apareciese el mensaje <code>access denied</code>, recomiendo seguir los pasos anteriores o <a href="https://help.github.com/articles/error-permission-denied-publickey">este artículo de GitHub</a> para comprobar que lo hemos hecho bien.
 </p>
 </div>
-</div>
+</li>
+</ol>
 </div>
 
-<div id="outline-container-orgf73b38f" class="outline-2">
-<h2 id="orgf73b38f"><span class="section-number-2">4.</span> Cambiar el editor por defecto</h2>
+<div id="outline-container-org7433c53" class="outline-2">
+<h2 id="org7433c53"><span class="section-number-2">4.</span> Cambiar el editor por defecto</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Por defecto, bash y git vienen con el editor <code>vi</code> por defecto. Para cambiarlo, tal como explican en <a href="https://stackoverflow.com/questions/2596805/how-do-i-make-git-use-the-editor-of-my-choice-for-commits">stackoverflow</a>, podemos hacerlo en una o en
 ambas.
 </p>
 </div>
-<div id="outline-container-orgb2dc9de" class="outline-3">
-<h3 id="orgb2dc9de"><span class="section-number-3">4.1.</span> core.editor</h3>
+<ol class="org-ol">
+<li><a id="org5dd59a6"></a>core.editor<br />
 <div class="outline-text-3" id="text-4-1">
 <p>
 Para usar <code>nano</code> o el editor de texto CLI de nuestra elección, corremos:
 </p>
-<pre class="example" id="orgf29db96">
+<pre class="example" id="org3f9bf18">
 git config --global core.editor "nano"
 </pre>
 
@@ -599,28 +670,69 @@ La opción <code>--global</code> es para hacerlo en todo git. Si solo quisiéram
 opción.
 </p>
 </div>
-</div>
-<div id="outline-container-org0494cd5" class="outline-3">
-<h3 id="org0494cd5"><span class="section-number-3">4.2.</span> nano como editor por defecto</h3>
+</li>
+<li><a id="org188d850"></a>nano como editor por defecto<br />
 <div class="outline-text-3" id="text-4-2">
 <p>
 Lo hacemos en dos líneas, con dos variables de entorno:
 </p>
 
-<pre class="example" id="orgf1ec7eb">
+<pre class="example" id="org7a1cd54">
 export VISUAL=nano
 export EDITOR=$VISUAL
 </pre>
 </div>
+</li>
+</ol>
 </div>
-</div>
-<div id="outline-container-orge40460f" class="outline-2">
-<h2 id="orge40460f"><span class="section-number-2">5.</span> Configuración</h2>
+<div id="outline-container-org625ba9b" class="outline-2">
+<h2 id="org625ba9b"><span class="section-number-2">5.</span> Configuración</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 La primera vez que usas Git te pedirá tu nombre de usuarix y dirección de correo. Lo podemos agregar con el comando <code>config</code>.
 </p>
 
+<p>
+Tal como comenta <a href="https://stackoverflow.com/a/16682441">sarigalin</a> hay tres niveles de configuración de <code>git</code>, de más específico a más general, siendo
+la más específica la que sobreescribe la más general.
+</p>
+
+<ul class="org-ul">
+<li><code>project</code>, configuración de proyecto, solo disponible para el actual proyecto. Se almacena en <code>.git/config</code>
+en el directorio del proyecto.</li>
+<li><code>global</code>, configuración global para todos los proyectos del usuario del sistema. Se almacena en <code>~/.gitconfig</code>.</li>
+<li><code>system</code>, configuración para el sistema, para todas las cuentas del sistema.</li>
+</ul>
+
+<p>
+Por tanto, si queremos tener una configuración para el sistema, escribiremos:
+</p>
+
+<pre class="example" id="org755b84a">
+git config --system user.name "Fulanito de Tal"
+</pre>
+
+<p>
+Si queremos que sea global para nuestra cuenta:
+</p>
+
+<pre class="example" id="org897b52e">
+git config --global user.name "Fulanito de Tal"
+</pre>
+
+<p>
+Y si queremos que sea especifica del repositorio, que es la configuración por defecto, no hay que añadir
+<code>--project</code> como en los otros dos casos.
+</p>
+
+<pre class="example" id="orgaa90d31">
+git config  user.name "Fulanito de Tal"
+</pre>
+</div>
+
+<ol class="org-ol">
+<li><a id="org22eac62"></a>Configuración global<br />
+<div class="outline-text-3" id="text-5-1">
 <p>
 Añado el nombre de la cuenta, en este caso el nombre de usuarix en GitHub:
 </p>
@@ -645,28 +757,30 @@ Si no queremos aplicar esta configuración a todo el sistema y solo a este repos
 <p>
 Cuando hagamos luego <code>git push</code>, nos pedirá el usuario y contraseña por https:
 </p>
-<pre class="example" id="org2e3400a">
+<pre class="example" id="org337a679">
 Username for 'https://github.com': usuarix
 Password for 'https://usuarix@github.com': 
 
 </pre>
 </div>
+</li>
+</ol>
 </div>
 
-<div id="outline-container-orge920830" class="outline-2">
-<h2 id="orge920830"><span class="section-number-2">6.</span> Crear un repositorio</h2>
+<div id="outline-container-org3dd68ea" class="outline-2">
+<h2 id="org3dd68ea"><span class="section-number-2">6.</span> Crear un repositorio</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgc97199a" class="outline-3">
-<h3 id="orgc97199a"><span class="section-number-3">6.1.</span> Opción GitHub al final</h3>
+<ol class="org-ol">
+<li><a id="orgc0cc942"></a>Opción GitHub al final<br />
 <div class="outline-text-3" id="text-6-1">
 <p>
 Podemos iniciar el proyecto git en un directorio cualquiera, ya creado, o bien crearlo en uno nuevo.
 </p>
 </div>
 
-<div id="outline-container-org02da653" class="outline-4">
-<h4 id="org02da653"><span class="section-number-4">6.1.1.</span> Nuevo repositorio en directorio nuevo</h4>
+<ol class="org-ol">
+<li><a id="org63da1e4"></a>Nuevo repositorio en directorio nuevo<br />
 <div class="outline-text-4" id="text-6-1-1">
 <p>
 Si queremos crearlo en uno nuevo, iniciamos el repositorio con la opción <code>init</code> seguida del nombre del directorio:
@@ -677,10 +791,9 @@ Si queremos crearlo en uno nuevo, iniciamos el repositorio con la opción <code>
 </pre>
 </div>
 </div>
-</div>
+</li>
 
-<div id="outline-container-orge3bef39" class="outline-4">
-<h4 id="orge3bef39"><span class="section-number-4">6.1.2.</span> Nuevo repositorio en directorio existente</h4>
+<li><a id="org6b059a4"></a>Nuevo repositorio en directorio existente<br />
 <div class="outline-text-4" id="text-6-1-2">
 <p>
 También podemos crear un directorio con <code>mkdir</code> y luego inicializar ese directorio solo con la opción <code>init</code>:
@@ -693,10 +806,9 @@ git init
 </pre>
 </div>
 </div>
-</div>
+</li>
 
-<div id="outline-container-org0b1cf0d" class="outline-4">
-<h4 id="org0b1cf0d"><span class="section-number-4">6.1.3.</span> Pasarlo a GitHub</h4>
+<li><a id="orgd03209e"></a>Pasarlo a GitHub<br />
 <div class="outline-text-4" id="text-6-1-3">
 <p>
 Para que el repositorio o proyecto también esté en GitHub, vamos a Github y creamos un proyecto nuevo que llamamos con el nombre del directorio que hemos creado o del directorio que ya existía.
@@ -713,12 +825,12 @@ Conectamos el directorio local donde nos encontramos con GitHub de la siguiente 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">git remote add origin https://github.com/tu_nombre_usuarix/primera-newsapp.git
+<pre class="src src-sh">git remote add origin https://github.com/cuenta/nombre-repositorio
 </pre>
 </div>
 
 <p>
-Donde le decimos a <code>git</code> que añadimos un <code>.git</code> remoto en la URL de GitHub.
+Donde le decimos a <code>git</code> que añadimos un <code>git</code> remoto en la URL de GitHub.
 </p>
 
 <p>
@@ -756,10 +868,10 @@ Y lo subimos a GitHub:
 </pre>
 </div>
 </div>
-</div>
-</div>
-<div id="outline-container-orgb101873" class="outline-3">
-<h3 id="orgb101873"><span class="section-number-3">6.2.</span> Opción GitHub</h3>
+</li>
+</ol>
+</li>
+<li><a id="org5e2c06c"></a>Opción GitHub<br />
 <div class="outline-text-3" id="text-6-2">
 <p>
 Primero creas un repositorio con un nombre en Github.
@@ -774,15 +886,14 @@ Github te sugiere varias formas de copiarlo en local, en el propio ordenador. Os
 git init
 git add README.md
 git commit -m <span style="color: #CC9393;">"primer commit"</span>
-git remote add origin https://github.com/tu_usuarix/nombre_proyecto.git
+git remote add origin https://github.com/cuenta/nombre-repositorio
 git push -u origin master
 </pre>
 </div>
 </div>
-</div>
+</li>
 
-<div id="outline-container-org6db4ea4" class="outline-3">
-<h3 id="org6db4ea4"><span class="section-number-3">6.3.</span> Comprobaciones</h3>
+<li><a id="orgeb3b34f"></a>Comprobaciones<br />
 <div class="outline-text-3" id="text-6-3">
 <p>
 Comprobamos su estado con la opción <code>status</code>:
@@ -815,13 +926,12 @@ Cuando quieras que el directorio deje de ser un repositorio git, tan solo hay qu
 Si en este caso podríamos saber el <i>status</i> de git, el mensaje nos avisaría diciendo que no se trata de un repositorio git.
 </p>
 </div>
+</li>
+</ol>
 </div>
-</div>
 
-
-
-<div id="outline-container-org3e47b55" class="outline-2">
-<h2 id="org3e47b55"><span class="section-number-2">7.</span> Clonar un repositorio</h2>
+<div id="outline-container-org5b6cf29" class="outline-2">
+<h2 id="org5b6cf29"><span class="section-number-2">7.</span> Clonar un repositorio</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Vamos a cualquier proyecto de GitHub y copiamos la URL que aparece en la casilla de <b>HTTPS</b>. En este caso, vamos a clonar el proyecto Boilerplate de Paul Irish:
@@ -844,8 +954,8 @@ Si en vez de clonar un repositorio lleno queremos hacerlo vacío, hay que poner:
 </div>
 </div>
 
-<div id="outline-container-org7cc2950" class="outline-2">
-<h2 id="org7cc2950"><span class="section-number-2">8.</span> Estado del repositorio</h2>
+<div id="outline-container-orgcd01c18" class="outline-2">
+<h2 id="orgcd01c18"><span class="section-number-2">8.</span> Estado del repositorio</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Podemos ver el estado del repositorio con la opción <code>log</code>
@@ -869,8 +979,8 @@ Que nos da toda esta información:
 </div>
 </div>
 
-<div id="outline-container-orgdd122d7" class="outline-2">
-<h2 id="orgdd122d7"><span class="section-number-2">9.</span> Información de cambios en el repositorio</h2>
+<div id="outline-container-org5077cde" class="outline-2">
+<h2 id="org5077cde"><span class="section-number-2">9.</span> Información de cambios en el repositorio</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Si queremos ver los cambios en esta versión, debemos utilizar la opción <code>diff</code>:
@@ -883,12 +993,12 @@ Si queremos ver los cambios en esta versión, debemos utilizar la opción <code>
 </div>
 </div>
 
-<div id="outline-container-orgaedcfa1" class="outline-2">
-<h2 id="orgaedcfa1"><span class="section-number-2">10.</span> Añadir y modificar documentos</h2>
+<div id="outline-container-orga3ce973" class="outline-2">
+<h2 id="orga3ce973"><span class="section-number-2">10.</span> Añadir y modificar documentos</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-orge931aa0" class="outline-3">
-<h3 id="orge931aa0"><span class="section-number-3">10.1.</span> Añadir</h3>
+<ol class="org-ol">
+<li><a id="org51f7f80"></a>Añadir<br />
 <div class="outline-text-3" id="text-10-1">
 <div class="org-src-container">
 <pre class="src src-sh">git add ruta-nuevos-archivos
@@ -897,15 +1007,16 @@ git push -u origin rama
 </pre>
 </div>
 </div>
-</div>
+</li>
+</ol>
 </div>
 
-<div id="outline-container-orgb763eb2" class="outline-2">
-<h2 id="orgb763eb2"><span class="section-number-2">11.</span> Renombrar archivos o directorios</h2>
+<div id="outline-container-orgd9d4982" class="outline-2">
+<h2 id="orgd9d4982"><span class="section-number-2">11.</span> Renombrar archivos o directorios</h2>
 <div class="outline-text-2" id="text-11">
 </div>
-<div id="outline-container-org13d5fcd" class="outline-4">
-<h4 id="org13d5fcd"><span class="section-number-4">11.0.1.</span> Renombrar un archivo</h4>
+<ol class="org-ol">
+<li><a id="org455f42f"></a>Renombrar un archivo<br />
 <div class="outline-text-4" id="text-11-0-1">
 <div class="org-src-container">
 <pre class="src src-sh">git mv archivo1 archivo2
@@ -914,10 +1025,9 @@ git push -u origin master
 </pre>
 </div>
 </div>
-</div>
+</li>
 
-<div id="outline-container-orge74d4f2" class="outline-4">
-<h4 id="orge74d4f2"><span class="section-number-4">11.0.2.</span> Renombrar un directorio</h4>
+<li><a id="orge275ffe"></a>Renombrar un directorio<br />
 <div class="outline-text-4" id="text-11-0-2">
 <div class="org-src-container">
 <pre class="src src-sh">git mv directorio1 directorio2
@@ -935,10 +1045,9 @@ Ver los cambios que vamos a realizar con la opción <code>-n</code>, el atajo de
 </pre>
 </div>
 </div>
-</div>
+</li>
 
-<div id="outline-container-org17f3d62" class="outline-4">
-<h4 id="org17f3d62"><span class="section-number-4">11.0.3.</span> Case sensitive</h4>
+<li><a id="orgad53219"></a>Case sensitive<br />
 <div class="outline-text-4" id="text-11-0-3">
 <p>
 Renombrar en sistemas que no distinguen entre mayúsculas y minúsculas, puede dar un error cuando modifiquemos el nombre por caracteres en mayúsculas, por lo que tendríamos que hacer:
@@ -970,12 +1079,11 @@ Ahora ya podremos hacer <code>git add</code> con éxito.
 La solución viene de <a href="http://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git">Stackoverflow</a>
 </p>
 </div>
-</div>
+</li>
 
 
 
-<div id="outline-container-org1b8df8d" class="outline-4">
-<h4 id="org1b8df8d"><span class="section-number-4">11.0.4.</span> Borrar del repositorio</h4>
+<li><a id="orgc83578f"></a>Borrar del repositorio<br />
 <div class="outline-text-4" id="text-11-0-4">
 <p>
 Borrar un archivo del repositorio sin borrarlo del sistema de directorios local:
@@ -987,10 +1095,9 @@ Borrar un archivo del repositorio sin borrarlo del sistema de directorios local:
 </pre>
 </div>
 </div>
-</div>
+</li>
 
-<div id="outline-container-orgccbb307" class="outline-4">
-<h4 id="orgccbb307"><span class="section-number-4">11.0.5.</span> Borrar un directorio</h4>
+<li><a id="org8c531cb"></a>Borrar un directorio<br />
 <div class="outline-text-4" id="text-11-0-5">
 <p>
 Para borrar un directorio:
@@ -1001,11 +1108,12 @@ Para borrar un directorio:
 </pre>
 </div>
 </div>
-</div>
+</li>
+</ol>
 </div>
 
-<div id="outline-container-org2244575" class="outline-2">
-<h2 id="org2244575"><span class="section-number-2">12.</span> Actualizar repositorio</h2>
+<div id="outline-container-orgc4d2c0f" class="outline-2">
+<h2 id="orgc4d2c0f"><span class="section-number-2">12.</span> Actualizar repositorio</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 Si queremos actualizar el repositorio con los cambios que se hayan producido en él, lo haremos con la opción <code>pull</code>:
@@ -1018,8 +1126,8 @@ Si queremos actualizar el repositorio con los cambios que se hayan producido en 
 </div>
 </div>
 
-<div id="outline-container-orge5d766d" class="outline-2">
-<h2 id="orge5d766d"><span class="section-number-2">13.</span> Deshacer cambios</h2>
+<div id="outline-container-org1c46805" class="outline-2">
+<h2 id="org1c46805"><span class="section-number-2">13.</span> Deshacer cambios</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 Si realizamos un <code>commit</code> pero queremos volver atrás, si no hemos realizado push, es:
@@ -1030,10 +1138,29 @@ Si realizamos un <code>commit</code> pero queremos volver atrás, si no hemos re
 
 </pre>
 </div>
+
+<p>
+Si hemos realizado el <code>commit</code> lo mejor es hacer <a href="http://schacon.github.io/git/git-revert.html">revert</a>, tal como explican 
+</p>
+
+
+<pre class="example" id="orgb87222b">
+git revert &lt;hash-or-ref&gt;
+</pre>
+
+<p>
+Para saber el <code>hash-or-ref</code> se puede consultar la parte de Commits de la página del repo o
+bien con el comando <code>git log --pretty=online</code>.
+</p>
+
+<p>
+Luego hacemos <code>git push</code> para actualizar el repositorio con el cambio revertido.
+</p>
 </div>
 </div>
-<div id="outline-container-org0cca90b" class="outline-2">
-<h2 id="org0cca90b"><span class="section-number-2">14.</span> Pull request</h2>
+
+<div id="outline-container-orga6e5dd9" class="outline-2">
+<h2 id="orga6e5dd9"><span class="section-number-2">14.</span> Pull request</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 Haremos un <i>pull request</i> cuando queramos contribuir con nuestros cambios -mejoras, corrección de errores, actualizaciones- a un repositorio que ya existe.
@@ -1114,8 +1241,8 @@ git push origin --delete nueva-rama
 </div>
 </div>
 </div>
-<div id="outline-container-orgd640c04" class="outline-2">
-<h2 id="orgd640c04"><span class="section-number-2">15.</span> Borrar rama</h2>
+<div id="outline-container-org1c98b67" class="outline-2">
+<h2 id="org1c98b67"><span class="section-number-2">15.</span> Borrar rama</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 En local:
@@ -1158,8 +1285,8 @@ o también:
 </div>
 </div>
 
-<div id="outline-container-org1130ff7" class="outline-2">
-<h2 id="org1130ff7"><span class="section-number-2">16.</span> Mantener un repositorio forkeado actualizado</h2>
+<div id="outline-container-org36dc781" class="outline-2">
+<h2 id="org36dc781"><span class="section-number-2">16.</span> Mantener un repositorio forkeado actualizado</h2>
 <div class="outline-text-2" id="text-16">
 <p>
 Añades <code>remoteando</code> como servidor remoto:
@@ -1167,6 +1294,7 @@ Añades <code>remoteando</code> como servidor remoto:
 
 <div class="org-src-container">
 <pre class="src src-sh">git remote add remoteando git://ruta-repositorio.git
+git remote add remoteando https://github.com/cuenta/nombre-repositorio.git
 </pre>
 </div>
 
@@ -1190,8 +1318,8 @@ Integras los cambios con la versión local:
 </div>
 </div>
 
-<div id="outline-container-orgdb0a2d2" class="outline-2">
-<h2 id="orgdb0a2d2"><span class="section-number-2">17.</span> Publicación web</h2>
+<div id="outline-container-org0442e16" class="outline-2">
+<h2 id="org0442e16"><span class="section-number-2">17.</span> Publicación web</h2>
 <div class="outline-text-2" id="text-17">
 <p>
 Si el contenido del proyecto es HTML, podemos utilizar a GitHub como servidor web de nuestro contenido web, a través de la funcionalidad <a href="http://pages.github.com/">Pages</a>.
@@ -1202,17 +1330,16 @@ Se puede hacer de dos maneras:
 </p>
 </div>
 
-<div id="outline-container-orgbc8ed12" class="outline-3">
-<h3 id="orgbc8ed12"><span class="section-number-3">17.1.</span> Nombre del repositorio</h3>
+<ol class="org-ol">
+<li><a id="orgc10c3d8"></a>Nombre del repositorio<br />
 <div class="outline-text-3" id="text-17-1">
 <p>
 Si el nombre del repositorio sigue la estructura "nombre-de-usuarix.github.io", el proyecto que cuelgue de ahí se publicará automágicamente en <a href="http://nombre-de-usuarix.github.io">http://nombre-de-usuarix.github.io</a>
 </p>
 </div>
-</div>
+</li>
 
-<div id="outline-container-org61e8e24" class="outline-3">
-<h3 id="org61e8e24"><span class="section-number-3">17.2.</span> Rama gh-pages</h3>
+<li><a id="orgee9f9ef"></a>Rama gh-pages<br />
 <div class="outline-text-3" id="text-17-2">
 <p>
 Cualquier repositorio que tenga la rama <code>gh-pages</code> será publicado, y se verá su contenido web.
@@ -1286,24 +1413,23 @@ Quedando así:
 De esta manera, cuando hagas git push lo harás en los dos repos.
 </p>
 </div>
+</li>
+</ol>
 </div>
-</div>
-
-
-<div id="outline-container-org91aae9f" class="outline-2">
-<h2 id="org91aae9f"><span class="section-number-2">18.</span> Gitignore</h2>
+<div id="outline-container-orgcd67658" class="outline-2">
+<h2 id="orgcd67658"><span class="section-number-2">18.</span> Gitignore</h2>
 <div class="outline-text-2" id="text-18">
 <p>
 <a href="https://git-scm.com/docs/gitignore">https://git-scm.com/docs/gitignore</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org5353da4" class="outline-2">
-<h2 id="org5353da4"><span class="section-number-2">19.</span> Problemas</h2>
+<div id="outline-container-orgc712835" class="outline-2">
+<h2 id="orgc712835"><span class="section-number-2">19.</span> Problemas</h2>
 <div class="outline-text-2" id="text-19">
 </div>
-<div id="outline-container-org37d8e2e" class="outline-3">
-<h3 id="org37d8e2e"><span class="section-number-3">19.1.</span> 403 fatal: HTTP request failed</h3>
+<ol class="org-ol">
+<li><a id="org59beb7c"></a>403 fatal: HTTP request failed<br />
 <div class="outline-text-3" id="text-19-1">
 <p>
 <a href="http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed">http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed</a>
@@ -1314,10 +1440,9 @@ De esta manera, cuando hagas git push lo harás en los dos repos.
 </pre>
 </div>
 </div>
-</div>
+</li>
 
-<div id="outline-container-org71b5d9c" class="outline-3">
-<h3 id="org71b5d9c"><span class="section-number-3">19.2.</span> git: error: src refspec master does not match any</h3>
+<li><a id="orge2c2613"></a>git: error: src refspec master does not match any<br />
 <div class="outline-text-3" id="text-19-2">
 <p>
 <a href="http://stackoverflow.com/questions/10568641/git-error-src-refspec-master-does-not-match-any">http://stackoverflow.com/questions/10568641/git-error-src-refspec-master-does-not-match-any</a>
@@ -1329,10 +1454,9 @@ git push -u origin master
 </pre>
 </div>
 </div>
-</div>
+</li>
 
-<div id="outline-container-orgca91f5e" class="outline-3">
-<h3 id="orgca91f5e"><span class="section-number-3">19.3.</span> Please, commit your changes or stash them before you can merge.</h3>
+<li><a id="org169b1a4"></a>Please, commit your changes or stash them before you can merge.<br />
 <div class="outline-text-3" id="text-19-3">
 <p>
 Si alguien o tú mismo en otro equipo ha actualizado el repositorio
@@ -1341,18 +1465,17 @@ opciones con las ramas, tienes <a href="http://stackoverflow.com/questions/15745
 </p>
 </div>
 
-<div id="outline-container-orgf434f05" class="outline-4">
-<h4 id="orgf434f05"><span class="section-number-4">19.3.1.</span> Comitear el cambio de la forma típica:</h4>
+<ol class="org-ol">
+<li><a id="orgdb0f185"></a>Comitear el cambio de la forma típica:<br />
 <div class="outline-text-4" id="text-19-3-1">
 <div class="org-src-container">
 <pre class="src src-sh">git commit -m <span style="color: #CC9393;">"comentario"</span>
 </pre>
 </div>
 </div>
-</div>
+</li>
 
-<div id="outline-container-org48f647d" class="outline-4">
-<h4 id="org48f647d"><span class="section-number-4">19.3.2.</span> Reservarlo o depositarlo en una pila o <i>stack</i> con <code>stash</code>:</h4>
+<li><a id="orgd2cf418"></a>Reservarlo o depositarlo en una pila o <i>stack</i> con <code>stash</code>:<br />
 <div class="outline-text-4" id="text-19-3-2">
 <div class="org-src-container">
 <pre class="src src-sh">git stash
@@ -1369,10 +1492,9 @@ Ahí puedes hacer <code>push</code> y aparece en orden inverso:
 </pre>
 </div>
 </div>
-</div>
+</li>
 
-<div id="outline-container-orgf569ed8" class="outline-4">
-<h4 id="orgf569ed8"><span class="section-number-4">19.3.3.</span> Descartar los cambios que has hecho</h4>
+<li><a id="orgd9fedf1"></a>Descartar los cambios que has hecho<br />
 <div class="outline-text-4" id="text-19-3-3">
 <div class="org-src-container">
 <pre class="src src-sh">git reset --hard
@@ -1380,103 +1502,65 @@ Ahí puedes hacer <code>push</code> y aparece en orden inverso:
 </pre>
 </div>
 </div>
+</li>
+</ol>
+</li>
+</ol>
 </div>
-</div>
-
-<div id="outline-container-org49c9f5b" class="outline-3">
-<h3 id="org49c9f5b"><span class="section-number-3">19.4.</span> Github fatal remote origin already exists</h3>
-<div class="outline-text-3" id="text-19-4">
-<p>
-Versión corta de la solución: actualiza irotisoper le:otomer o
-</p>
 
 
-<p>
-TL;DR you should just update the existing remote:
-</p>
-
-<p>
-$ git remote set-url origin git@github.com:ppreyer/first<sub>app.git</sub>
-</p>
-
-<p>
-Long version:
-</p>
-
-<p>
-As the error message indicates, there is already a remote configured with the same name. So you can either add the new remote with a different name or update the existing one if you don't need it:
-</p>
-
-<p>
-To add a new remote, called for example github instead of origin (which obviously already exists in your system), do the following:
-</p>
-
-<p>
-$ git remote add github git@github.com:ppreyer/first<sub>app.git</sub>
-</p>
-
-<p>
-Remember though, everywhere in the tutorial you see "origin" you should replace it with "github". For example $ git push origin master should now be $ git push github master.
-</p>
-
-<p>
-However, if you want to see what that origin which already exists is, you can do a $ git remote -v. If you think this is there by some error, you can update it like so:
-</p>
-
-<p>
-$ git remote set-url origin git@github.com:ppreyer/first<sub>app.git</sub>
-</p>
-
-<p>
-<a href="http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-exists">http://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-exists</a>
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org740a425" class="outline-2">
-<h2 id="org740a425"><span class="section-number-2">20.</span> Pruebas</h2>
+<div id="outline-container-org022b5bd" class="outline-2">
+<h2 id="org022b5bd"><span class="section-number-2">20.</span> Pruebas</h2>
 <div class="outline-text-2" id="text-20">
 <p>
 <a href="https://try.github.io/levels/1/challenges/1">Try Git</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org06e6624" class="outline-2">
-<h2 id="org06e6624"><span class="section-number-2">21.</span> Bibliografía</h2>
+<div id="outline-container-org4c9b95c" class="outline-2">
+<h2 id="org4c9b95c"><span class="section-number-2">21.</span> Bibliografía</h2>
 <div class="outline-text-2" id="text-21">
 </div>
-<div id="outline-container-org4c47842" class="outline-3">
-<h3 id="org4c47842"><span class="section-number-3">21.1.</span> Algunos recursos</h3>
+<ol class="org-ol">
+<li><a id="orga3225ed"></a>Algunos recursos<br />
 <div class="outline-text-3" id="text-21-1">
 <ul class="org-ul">
 <li><a href="https://git-scm.com/book/es">Git, distributed is the new centralized</a></li>
 <li><a href="http://alistapart.com/article/get-started-with-git">http://alistapart.com/article/get-started-with-git</a></li>
 <li><a href="http://progit.org/book/ch1-4.html">http://progit.org/book/ch1-4.html</a></li>
+<li>Mastering markdown, guía de Github <a href="https://guides.github.com/features/mastering-markdown/">https://guides.github.com/features/mastering-markdown/</a></li>
 <li><a href="http://ferblape.github.io/github.com-medialab-desigualdad">Qué es y cómo publicar nuestros proyectos en Github</a></li>
 <li><a href="http://rooteando.com/escenarios-de-trabajo-en-git/">Escenario de trabajo en git</a></li>
 </ul>
 </div>
-</div>
-<div id="outline-container-org97a5281" class="outline-3">
-<h3 id="org97a5281"><span class="section-number-3">21.2.</span> Git Github Course</h3>
+</li>
+
+<li><a id="orgc2e9081"></a>Git Github Course<br />
 <div class="outline-text-3" id="text-21-2">
 </div>
-</div>
+</li>
 
-<div id="outline-container-org6345ee2" class="outline-3">
-<h3 id="org6345ee2"><span class="section-number-3">21.3.</span> Cheatsheets</h3>
+<li><a id="org004c93d"></a>Cheatsheets<br />
 <div class="outline-text-3" id="text-21-3">
 <ul class="org-ul">
 <li><a href="http://overapi.com/static/cs/git-cheat-sheet.pdf">git cheat sheet</a></li>
 </ul>
+<p>
+<code>=====</code>
+</p>
 </div>
+</li>
+<li><a id="org89d32fb"></a>Cheatsheets<br />
+<div class="outline-text-3" id="text-21-4">
+<ul class="org-ul">
+<li><a href="http://overapi.com/static/cs/git-cheat-sheet.pdf">Git cheat sheet</a></li>
+</ul>
 </div>
+</li>
+</ol>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2015-12-16 Wed 16:00</p>
-<p class="author">Author: Adolfo Antón Bravo</p>
-<p class="date">Created: 2021-11-02 Tue 14:13</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
